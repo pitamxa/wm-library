@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build:library": "npm --prefix ../ui-library run build",
+    "build:library": "npm --prefix ../ui-library ci && npm --prefix ../ui-library run build",
     "dev": "npm run build:library && vite",
     "dev:lan": "npm run build:library && vite --host 0.0.0.0 --port 3001",
     "build": "npm run build:library && vite build"
