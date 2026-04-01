@@ -1,0 +1,360 @@
+/**
+ * Input Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Input Component Variables ========== */
+:root {
+  /* The default background color for input fields once the text has been filled. */
+  --input: var(--white);
+  /* The default background color for input fields, text areas, and other input elements. */
+  --input-background: var(--white);
+}
+
+/* ========== Input 容器 ========== */
+.wm-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+/* ========== 标签 ========== */
+.wm-input__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+}
+
+.wm-input__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== Input 包装器 ========== */
+.wm-input__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: var(--radius-4);
+  transition: all 150ms;
+}
+
+/* Wrapper 尺寸 */
+.wm-input__wrapper--sm {
+  height: var(--spacing-32);
+}
+
+.wm-input__wrapper--default {
+  height: var(--spacing-36);
+}
+
+.wm-input__wrapper--lg {
+  height: var(--spacing-40);
+}
+
+
+
+/* ========== Wrapper 状态 ========== */
+.wm-input__wrapper:hover:not(.wm-input__wrapper--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-input__wrapper--focused {
+  border-color: var(--primary-1-default);
+  /* 移除 outline 样式 */
+}
+
+.wm-input__wrapper--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  color: var(--text-disabled);
+  border-color: var(--border-secondary);
+}
+
+.wm-input__wrapper--error {
+  border-color: var(--error-1);
+}
+
+.wm-input__wrapper--error:hover:not(.wm-input__wrapper--disabled) {
+  border-color: var(--error-2);
+}
+
+.wm-input__wrapper--error.wm-input__wrapper--focused {
+  border-color: var(--error-1);
+  /* 移除 outline 样式 */
+}
+
+.wm-input__wrapper--success {
+  border-color: var(--success-1);
+}
+
+.wm-input__wrapper--success:hover:not(.wm-input__wrapper--disabled) {
+  border-color: var(--success-2);
+}
+
+.wm-input__wrapper--success.wm-input__wrapper--focused {
+  border-color: var(--success-1);
+  /* 移除 outline 样式 */
+}
+
+/* ========== Input 前缀 ========== */
+.wm-input__prefix {
+  display: flex;
+  align-items: center;
+  padding-left: var(--spacing-10);
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+.wm-input__wrapper--sm .wm-input__prefix {
+  padding-left: var(--spacing-10);
+}
+
+.wm-input__wrapper--default .wm-input__prefix {
+  padding-left: var(--spacing-12);
+}
+
+.wm-input__wrapper--lg .wm-input__prefix {
+  padding-left: var(--spacing-12);
+}
+
+
+
+/* ========== Input 输入框 ========== */
+.wm-input__field {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+}
+
+/* Input 尺寸 */
+.wm-input__field--sm {
+  padding: var(--spacing-6) var(--spacing-10);
+  font-size: var(--text-base);
+  line-height: var(--lineheight-20);
+}
+
+.wm-input__field--default {
+  padding: var(--spacing-8) var(--spacing-12);
+  font-size: var(--text-base);
+  line-height: var(--lineheight-20);
+}
+
+.wm-input__field--lg {
+  padding: var(--spacing-10) var(--spacing-12);
+  font-size: var(--text-lg);
+  line-height: var(--lineheight-24);
+}
+
+
+
+.wm-input__wrapper--with-prefix .wm-input__field {
+  padding-left: var(--spacing-8);
+}
+
+.wm-input__wrapper--with-suffix .wm-input__field {
+  padding-right: var(--spacing-8);
+}
+
+.wm-input__field::placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-input__field:disabled,
+.wm-input__field:read-only {
+  cursor: not-allowed;
+}
+
+/* ========== Input 后缀 ========== */
+.wm-input__suffix {
+  display: flex;
+  align-items: center;
+  padding-right: var(--spacing-10);
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+.wm-input__wrapper--sm .wm-input__suffix {
+  padding-right: var(--spacing-10);
+}
+
+.wm-input__wrapper--default .wm-input__suffix {
+  padding-right: var(--spacing-12);
+}
+
+.wm-input__wrapper--lg .wm-input__suffix {
+  padding-right: var(--spacing-12);
+}
+
+
+
+.wm-input__suffix-content {
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+/* ========== 密码切换按钮 ========== */
+.wm-input__password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color 150ms;
+  outline: none;
+}
+
+.wm-input__password-toggle:hover {
+  color: var(--text-secondary);
+}
+
+.wm-input__password-toggle:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+/* ========== 清除按钮 ========== */
+.wm-input__clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  border-radius: 50%;
+  background-color: var(--border-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  padding: 0;
+  flex-shrink: 0;
+  margin-right: var(--spacing-4);
+}
+
+.wm-input__clear-btn:hover {
+  background-color: var(--text-tertiary);
+}
+
+.wm-input__clear-btn:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-input__clear-icon {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+  color: var(--white);
+}
+
+/* ========== 图标 ========== */
+.wm-input__icon {
+  flex-shrink: 0;
+}
+
+.wm-input__icon--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-input__icon--default {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.wm-input__icon--lg {
+  width: var(--spacing-18);
+  height: var(--spacing-18);
+}
+
+
+
+.wm-input__icon--error {
+  color: var(--error-1);
+}
+
+.wm-input__icon--success {
+  color: var(--success-1);
+}
+
+/* ========== 底部区域 ========== */
+.wm-input__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  min-height: var(--spacing-22);
+}
+
+/* ========== 辅助文本 ========== */
+.wm-input__helper {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--lineheight-22);
+  color: var(--text-tertiary);
+  flex: 1;
+}
+
+.wm-input__helper--error {
+  color: var(--error-1);
+}
+
+.wm-input__helper--success {
+  color: var(--success-1);
+}
+
+
+
+/* ========== 字符计数 ========== */
+.wm-input__counter {
+  font-size: var(--text-sm);
+  line-height: var(--lineheight-22);
+  color: var(--text-quaternary);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.wm-input__counter-current {
+  color: var(--text-tertiary);
+}
+
+.wm-input__counter--warning .wm-input__counter-current {
+  color: var(--warning-1);
+}
+
+.wm-input__counter--error .wm-input__counter-current {
+  color: var(--error-1);
+}
+
+
+
+/* ========== 无障碍支持 ========== */
+/* 移除 focus-within 的 outline 样式 */
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .wm-input__wrapper {
+    border-width: 2px;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-input__wrapper,
+  .wm-input__password-toggle {
+    transition: none;
+  }
+}

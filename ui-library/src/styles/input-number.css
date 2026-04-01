@@ -1,0 +1,380 @@
+/**
+ * InputNumber Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ *
+ * 组件级可配置变量（消费方可按需覆盖）
+ */
+.wm-input-number {
+  /* ---- 组件级配置令牌 ---- */
+  --_input-number-gap: var(--spacing-8);
+  --_input-number-padding-x: var(--spacing-12);
+  --_input-number-padding-x-compact: var(--spacing-8);
+  --_input-number-field-width: 120px;
+  --_input-number-controls-width: var(--spacing-24);
+  --_input-number-icon-size: var(--spacing-12);
+  --_input-number-dial-btn-size: var(--spacing-32);
+  --_input-number-dial-field-width: 80px;
+  --_input-number-dial-icon-size: var(--spacing-16);
+}
+
+/* ========== 容器 ========== */
+.wm-input-number {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--_input-number-gap);
+  width: fit-content;
+}
+
+.wm-input-number--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* ========== 标签 ========== */
+.wm-input-number__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+  font-family: var(--font-family-base);
+}
+
+.wm-input-number__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== 包装器 ========== */
+.wm-input-number__wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: var(--radius-4);
+  transition: border-color 150ms;
+  font-family: var(--font-family-base);
+}
+
+/* 包装器尺寸 —— 仅 sm */
+.wm-input-number__wrapper--sm {
+  height: var(--spacing-32);
+}
+
+/* ========== 包装器状态 ========== */
+.wm-input-number__wrapper:hover:not(.wm-input-number__wrapper--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-input-number__wrapper--focused {
+  border-color: var(--primary-1-default);
+}
+
+.wm-input-number__wrapper--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  color: var(--text-disabled);
+  border-color: var(--border-secondary);
+}
+
+.wm-input-number__wrapper--error {
+  border-color: var(--error-1);
+}
+
+.wm-input-number__wrapper--error:hover:not(.wm-input-number__wrapper--disabled) {
+  border-color: var(--error-2);
+}
+
+.wm-input-number__wrapper--error.wm-input-number__wrapper--focused {
+  border-color: var(--error-1);
+}
+
+.wm-input-number__wrapper--success {
+  border-color: var(--success-1);
+}
+
+.wm-input-number__wrapper--success:hover:not(.wm-input-number__wrapper--disabled) {
+  border-color: var(--success-2);
+}
+
+.wm-input-number__wrapper--success.wm-input-number__wrapper--focused {
+  border-color: var(--success-1);
+}
+
+/* ========== 前缀 / 后缀 ========== */
+.wm-input-number__prefix,
+.wm-input-number__suffix-content {
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  user-select: none;
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-input-number__prefix {
+  padding-left: var(--_input-number-padding-x);
+}
+
+.wm-input-number__suffix-content {
+  padding-right: var(--_input-number-padding-x);
+}
+
+/* ========== 输入框 ========== */
+.wm-input-number__field {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  outline: none;
+  font-family: var(--font-family-base);
+  /* 隐藏浏览器自带的上下箭头 */
+  -moz-appearance: textfield;
+}
+
+.wm-input-number__field::-webkit-outer-spin-button,
+.wm-input-number__field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.wm-input-number__field--sm {
+  padding: calc((var(--spacing-32) - var(--lineheight-20)) / 2) var(--_input-number-padding-x);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-20);
+  width: var(--_input-number-field-width);
+}
+
+.wm-input-number__field::placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-input-number__field:disabled {
+  cursor: not-allowed;
+}
+
+/* 有前缀时缩减左 padding */
+.wm-input-number__wrapper--with-prefix .wm-input-number__field {
+  padding-left: var(--_input-number-padding-x-compact);
+}
+
+/* 有后缀或步进按钮时缩减右 padding */
+.wm-input-number__wrapper--with-suffix .wm-input-number__field,
+.wm-input-number__wrapper--with-controls .wm-input-number__field {
+  padding-right: var(--_input-number-padding-x-compact);
+}
+
+/* ========== 步进按钮容器（default 变体） ========== */
+.wm-input-number__controls {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border-left: 1px solid var(--border-secondary);
+  flex-shrink: 0;
+}
+
+.wm-input-number__control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: var(--_input-number-controls-width);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-input-number__control-btn:hover:not(:disabled) {
+  background-color: var(--fill-quaternary);
+  color: var(--text-main);
+}
+
+.wm-input-number__control-btn:active:not(:disabled) {
+  background-color: var(--fill-main);
+}
+
+.wm-input-number__control-btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* 上按钮 — 右上圆角 */
+.wm-input-number__control-btn--up {
+  border-bottom: 1px solid var(--border-secondary);
+  border-radius: 0 calc(var(--radius-4) - 1px) 0 0;
+}
+
+/* 下按钮 — 右下圆角 */
+.wm-input-number__control-btn--down {
+  border-radius: 0 0 calc(var(--radius-4) - 1px) 0;
+}
+
+.wm-input-number__control-icon {
+  width: var(--_input-number-icon-size);
+  height: var(--_input-number-icon-size);
+}
+
+/* ==========================================================
+   悬浮显示控制按钮变体 (hover-controls)
+   默认隐藏步进按钮及分隔线，hover / focus 时显示
+   ========================================================== */
+
+.wm-input-number__wrapper--hover-controls .wm-input-number__controls {
+  border-left-color: transparent;
+  visibility: hidden;
+}
+
+.wm-input-number__wrapper--hover-controls:hover:not(.wm-input-number__wrapper--disabled) .wm-input-number__controls,
+.wm-input-number__wrapper--hover-controls.wm-input-number__wrapper--focused .wm-input-number__controls {
+  visibility: visible;
+  border-left-color: var(--border-secondary);
+}
+
+/* ==========================================================
+   拨轮变体 (dial)
+   整体为一个统一边框组：[ − | value | + ]
+   ========================================================== */
+
+/* dial wrapper：自身承担统一外边框和圆角 */
+.wm-input-number__wrapper--dial {
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  background-color: var(--white);
+  gap: 0;
+  overflow: hidden;
+}
+
+/* dial 模式下 input 居中，无自身边框，用左右内分隔线 */
+.wm-input-number__field--dial {
+  text-align: center;
+  border: none;
+  border-left: 1px solid var(--border-secondary);
+  border-right: 1px solid var(--border-secondary);
+  border-radius: 0;
+  width: var(--_input-number-dial-field-width);
+  padding: calc((var(--spacing-32) - var(--lineheight-20)) / 2) 0;
+}
+
+/* dial 按钮 — 无自身边框，由 wrapper 统一管理 */
+.wm-input-number__dial-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--_input-number-dial-btn-size);
+  align-self: stretch;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-input-number__dial-btn:hover:not(:disabled) {
+  color: var(--primary-1-default);
+}
+
+.wm-input-number__dial-btn:active:not(:disabled) {
+  color: var(--primary-3-active);
+}
+
+.wm-input-number__dial-btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.wm-input-number__dial-icon {
+  width: var(--_input-number-dial-icon-size);
+  height: var(--_input-number-dial-icon-size);
+  stroke-width: 1px;
+}
+
+/* ---- dial 状态：focus / error / success ---- */
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--focused {
+  border-color: var(--primary-1-default);
+}
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--focused .wm-input-number__field--dial {
+  border-left-color: var(--primary-1-default);
+  border-right-color: var(--primary-1-default);
+}
+
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--error {
+  border-color: var(--error-1);
+}
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--error .wm-input-number__field--dial {
+  border-left-color: var(--error-1);
+  border-right-color: var(--error-1);
+}
+
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--success {
+  border-color: var(--success-1);
+}
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--success .wm-input-number__field--dial {
+  border-left-color: var(--success-1);
+  border-right-color: var(--success-1);
+}
+
+/* dial disabled — 整体灰底 */
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled {
+  background-color: var(--fill-tertiary);
+}
+
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled .wm-input-number__dial-btn {
+  color: var(--text-quaternary);
+  cursor: not-allowed;
+}
+
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled .wm-input-number__field--dial {
+  color: var(--text-quaternary);
+  cursor: not-allowed;
+}
+
+/* ========== 底部区域 ========== */
+.wm-input-number__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--_input-number-gap);
+  min-height: var(--lineheight-22);
+}
+
+/* ========== 辅助文本 ========== */
+.wm-input-number__helper {
+  margin: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-22);
+  color: var(--text-tertiary);
+  flex: 1;
+  font-family: var(--font-family-base);
+}
+
+.wm-input-number__helper--error {
+  color: var(--error-1);
+}
+
+.wm-input-number__helper--success {
+  color: var(--success-1);
+}
+
+/* ========== 无障碍 ========== */
+@media (prefers-contrast: high) {
+  .wm-input-number__wrapper {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wm-input-number__wrapper,
+  .wm-input-number__control-btn,
+  .wm-input-number__dial-btn {
+    transition: none;
+  }
+}

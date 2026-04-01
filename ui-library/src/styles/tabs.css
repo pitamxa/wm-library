@@ -1,0 +1,86 @@
+/**
+ * Tabs Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Tabs 容器 ========== */
+.wm-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--font-family-base);
+}
+
+/* ========== Tab 导航栏 ========== */
+.wm-tabs__nav {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border-secondary);
+  gap: 50px;
+}
+
+/* ========== 单个 Tab 项 ========== */
+.wm-tabs__tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+  white-space: nowrap;
+  transition: color 150ms;
+  padding: var(--spacing-16) var(--spacing-8);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* 悬浮状态 */
+.wm-tabs__tab:hover:not(.wm-tabs__tab--active):not(.wm-tabs__tab--disabled) {
+  color: var(--primary-2-hover);
+}
+
+/* 激活状态 */
+.wm-tabs__tab--active {
+  color: var(--primary-1-default);
+  font-weight: 500;
+}
+
+/* 禁用状态 */
+.wm-tabs__tab--disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========== 下划线指示条 ========== */
+.wm-tabs__indicator {
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background-color: var(--primary-1-default);
+  transition: left 200ms ease, width 200ms ease;
+  z-index: 1;
+}
+
+/* ========== Tab 内容面板 ========== */
+.wm-tabs__panel {
+  padding-top: var(--spacing-16);
+}
+
+/* ========== 无障碍支持 ========== */
+.wm-tabs__tab:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: -2px;
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-tabs__indicator {
+    transition: none;
+  }
+}

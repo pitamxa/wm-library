@@ -1,0 +1,201 @@
+/**
+ * WM Search Component Styles
+ * BEM Naming Convention
+ */
+
+.wm-search {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-base);
+}
+
+.wm-search__label {
+  display: block;
+  margin-bottom: var(--spacing-8);
+  font-size: var(--fontsize-14);
+  color: var(--text-main);
+  font-weight: var(--font-weight-normal);
+}
+
+.wm-search__container {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 38px; /* no design token for 38px */
+  background-color: var(--white);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  transition: border-color 200ms;
+  box-sizing: border-box;
+}
+
+.wm-search__container:hover {
+  border-color: var(--primary-1-default);
+}
+
+.wm-search__container--focus {
+  border-color: var(--primary-1-default);
+}
+
+.wm-search__container--error {
+  border-color: var(--error-1);
+}
+
+.wm-search__container--disabled {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  cursor: not-allowed;
+}
+
+.wm-search__container--sm {
+  height: var(--spacing-32);
+}
+
+.wm-search__container--lg {
+  height: 44px; /* no design token for 44px */
+}
+
+.wm-search__content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  padding-left: var(--spacing-10);
+}
+
+.wm-search__input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wm-search__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-family-base);
+  font-size: var(--text-base);
+  color: var(--text-main);
+  padding: var(--spacing-8) 0;
+  box-sizing: border-box;
+}
+
+.wm-search__input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.wm-search__input:disabled {
+  color: var(--text-quaternary);
+  cursor: not-allowed;
+}
+
+.wm-search__clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  border-radius: 50%;
+  background-color: var(--border-secondary); /* using border-main (#B9B9B9) as closest to #b9b9b9 */
+  border: none;
+  cursor: pointer;
+  margin-right: var(--spacing-8);
+  transition: background-color 200ms;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.wm-search__clear-btn:hover {
+  background-color: var(--text-tertiary);
+}
+
+.wm-search__clear-icon {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+  color: var(--white);
+}
+
+.wm-search__button-wrapper {
+  position: relative;
+  width: 38px; /* no design token for 38px — matches container height */
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.wm-search__container--sm .wm-search__button-wrapper {
+  width: var(--spacing-32);
+}
+
+.wm-search__container--lg .wm-search__button-wrapper {
+  width: 44px; /* no design token for 44px */
+}
+
+.wm-search__button-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--fill-quaternary);
+  transition: background-color 200ms;
+  border-top-right-radius: var(--radius-4);
+  border-bottom-right-radius: var(--radius-4);
+}
+
+.wm-search__button-wrapper:hover .wm-search__button-bg {
+  background-color: var(--fill-secondary);
+}
+
+.wm-search__button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.wm-search__button:disabled {
+  cursor: not-allowed;
+}
+
+/* Disabled state for button wrapper */
+.wm-search__container--disabled .wm-search__button-bg {
+  background-color: var(--fill-tertiary);
+}
+
+.wm-search__search-icon {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  color: var(--text-quaternary);
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  transition: color 200ms;
+}
+
+.wm-search__button:hover .wm-search__search-icon {
+  color: var(--primary-1-default);
+}
+
+.wm-search__button:disabled:hover .wm-search__search-icon {
+  color: var(--text-quaternary);
+}
+
+.wm-search__button:disabled .wm-search__search-icon {
+  color: var(--text-quaternary);
+}
+
+.wm-search__error-msg {
+  margin-top: var(--spacing-4);
+  font-size: var(--text-sm);
+  color: var(--error-1);
+  font-family: var(--font-family-base);
+}

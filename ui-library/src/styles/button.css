@@ -1,0 +1,363 @@
+/**
+ * Button Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Button 基础样式 ========== */
+.wm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  border: 1px solid transparent;
+  border-radius: var(--radius-4);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 150ms;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ========== Button 尺寸 ========== */
+.wm-button--sm {
+  height: var(--spacing-32);
+  padding: 0 var(--spacing-16);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-button--default {
+  height: var(--spacing-40);
+  padding: 0 var(--spacing-24);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-button--lg {
+  height: var(--spacing-48);
+  padding: 0 var(--spacing-32);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+/* 只有图标的按钮 */
+.wm-button--icon-only {
+  background-color: transparent;
+}
+
+.wm-button--icon-only.wm-button--sm {
+  width: var(--spacing-32);
+  padding: 0;
+}
+
+.wm-button--icon-only.wm-button--default {
+  width: var(--spacing-40);
+  padding: 0;
+}
+
+.wm-button--icon-only.wm-button--lg {
+  width: var(--spacing-48);
+  padding: 0;
+}
+
+/* 纯图标按钮悬浮状态 - 字体颜色 */
+.wm-button--icon-only.wm-button--secondary:hover:not(.wm-button--disabled) {
+  color: var(--primary-1-default);
+}
+
+.wm-button--icon-only.wm-button--ghost:hover:not(.wm-button--disabled) {
+  color: var(--primary-2-hover);
+}
+
+.wm-button--icon-only.wm-button--outline:hover:not(.wm-button--disabled) {
+  color: var(--primary-2-hover);
+}
+
+/* ========== Primary 变体 ========== */
+.wm-button--primary {
+  background-color: var(--primary-1-default);
+  border-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+.wm-button--primary:hover:not(.wm-button--disabled) {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+}
+
+.wm-button--primary:active:not(.wm-button--disabled) {
+  background-color: var(--primary-3-active);
+  border-color: var(--primary-3-active);
+}
+
+.wm-button--primary:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== Secondary 变体 ========== */
+.wm-button--secondary {
+  background-color: transparent;
+  border-color: var(--border-secondary);
+  color: var(--text-secondary);
+}
+
+.wm-button--secondary:hover:not(.wm-button--disabled) {
+  background-color: transparent;
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+.wm-button--secondary:active:not(.wm-button--disabled) {
+  background-color: transparent;
+  border-color: var(--primary-3-active);
+  color: var(--primary-3-active);
+}
+
+.wm-button--secondary:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== Outline 变体 ========== */
+.wm-button--outline {
+  background-color: transparent;
+  border-color: var(--primary-1-default);
+  color: var(--primary-1-default);
+}
+
+.wm-button--outline:hover:not(.wm-button--disabled) {
+  background-color: transparent;
+  border-color: var(--primary-2-hover);
+  color: var(--primary-2-hover);
+}
+
+.wm-button--outline:active:not(.wm-button--disabled) {
+  background-color: transparent;
+  border-color: var(--primary-3-active);
+  color: var(--primary-3-active);
+}
+
+.wm-button--outline:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== Ghost 变体 ========== */
+.wm-button--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--primary-1-default);
+  padding: 0;
+  height: auto;
+}
+
+.wm-button--ghost:hover:not(.wm-button--disabled) {
+  background-color: transparent;
+  color: var(--primary-2-hover);
+}
+
+.wm-button--ghost:active:not(.wm-button--disabled) {
+  background-color: transparent;
+  color: var(--primary-3-active);
+}
+
+.wm-button--ghost:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== Danger 变体 ========== */
+.wm-button--danger {
+  background-color: var(--error-1);
+  border-color: var(--error-1);
+  color: var(--white);
+}
+
+.wm-button--danger:hover:not(.wm-button--disabled) {
+  background-color: var(--error-2);
+  border-color: var(--error-2);
+}
+
+.wm-button--danger:active:not(.wm-button--disabled) {
+  background-color: var(--error-3);
+  border-color: var(--error-3);
+}
+
+.wm-button--danger:focus-visible {
+  outline: 2px solid var(--error-1);
+  outline-offset: 2px;
+}
+
+/* ========== Success 变体 ========== */
+.wm-button--success {
+  background-color: var(--success-1);
+  border-color: var(--success-1);
+  color: var(--white);
+}
+
+.wm-button--success:hover:not(.wm-button--disabled) {
+  background-color: var(--success-2);
+  border-color: var(--success-2);
+}
+
+.wm-button--success:active:not(.wm-button--disabled) {
+  background-color: var(--success-3);
+  border-color: var(--success-3);
+}
+
+.wm-button--success:focus-visible {
+  outline: 2px solid var(--success-1);
+  outline-offset: 2px;
+}
+
+/* ========== Warning 变体 ========== */
+.wm-button--warning {
+  background-color: var(--warning-1);
+  border-color: var(--warning-1);
+  color: var(--white);
+}
+
+.wm-button--warning:hover:not(.wm-button--disabled) {
+  background-color: var(--warning-2);
+  border-color: var(--warning-2);
+}
+
+.wm-button--warning:active:not(.wm-button--disabled) {
+  background-color: var(--warning-3);
+  border-color: var(--warning-3);
+}
+
+.wm-button--warning:focus-visible {
+  outline: 2px solid var(--warning-1);
+  outline-offset: 2px;
+}
+
+/* ========== 禁用状态 ========== */
+.wm-button--disabled {
+  cursor: not-allowed;
+}
+
+/* Primary 禁用 */
+.wm-button--primary.wm-button--disabled {
+  background-color: var(--primary-6-disabled);
+  border-color: var(--primary-6-disabled);
+  color: var(--white);
+}
+
+/* Secondary 禁用 */
+.wm-button--secondary.wm-button--disabled {
+  border-color: var(--border-secondary);
+  color: var(--text-disabled);
+}
+
+/* Outline 禁用 */
+.wm-button--outline.wm-button--disabled {
+  border-color: var(--primary-6-disabled);
+  color: var(--primary-6-disabled);
+}
+
+/* Ghost 禁用 */
+.wm-button--ghost.wm-button--disabled {
+  color: var(--primary-6-disabled);
+}
+
+/* Danger 禁用 */
+.wm-button--danger.wm-button--disabled {
+  background-color: var(--error-5);
+  border-color: var(--error-5);
+  color: var(--white);
+}
+
+/* Success 禁用 */
+.wm-button--success.wm-button--disabled {
+  background-color: var(--success-5);
+  border-color: var(--success-5);
+  color: var(--white);
+}
+
+/* Warning 禁用 */
+.wm-button--warning.wm-button--disabled {
+  background-color: var(--warning-5);
+  border-color: var(--warning-5);
+  color: var(--white);
+}
+
+/* ========== 加载状态 ========== */
+.wm-button--loading {
+  cursor: wait;
+}
+
+/* ========== 块级按钮 ========== */
+.wm-button--block {
+  width: 100%;
+  display: flex;
+}
+
+/* ========== Button 图标 ========== */
+.wm-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-button__icon--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-button__icon--default {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.wm-button__icon--lg {
+  width: var(--spacing-18);
+  height: var(--spacing-18);
+}
+
+.wm-button__icon--loading {
+  animation: wm-button-spin 1s linear infinite;
+}
+
+@keyframes wm-button-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== Button 文本 ========== */
+.wm-button__text {
+  display: inline-block;
+  font-size: var(--fontsize-14);
+  font-weight: 400;
+}
+
+/* ========== 无障碍支持 ========== */
+.wm-button:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .wm-button {
+    border-width: 2px;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-button {
+    transition: none;
+  }
+  
+  .wm-button__icon--loading {
+    animation: none;
+  }
+}

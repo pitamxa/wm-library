@@ -1,0 +1,707 @@
+/**
+ * WM Selector Component Styles
+ * 使用 BEM 命名规范
+ */
+
+/* ========== 容器 ========== */
+.wm-selector {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  font-family: var(--font-family-base);
+}
+
+/* ========== 标签 ========== */
+.wm-selector__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+}
+
+.wm-selector__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== 触发器基础样式 ========== */
+.wm-selector__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  background-color: var(--white);
+  transition: border-color 200ms, background-color 200ms;
+  cursor: default;
+  font-family: var(--font-family-base);
+}
+
+.wm-selector__trigger:focus {
+  outline: none;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-offset-width: 2px;
+}
+
+.wm-selector__trigger:hover:not(.wm-selector__trigger--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+/* ========== 触发器尺寸 ========== */
+.wm-selector__trigger--sm {
+  padding: 6px 10px;
+  font-size: var(--text-base);
+  height: var(--spacing-32);
+}
+
+/* ========== 触发器状态 ========== */
+.wm-selector__trigger--default-state {
+  border-color: var(--border-secondary);
+  --tw-ring-color: var(--primary-1-default);
+}
+
+.wm-selector__trigger--default-state:hover:not(.wm-selector__trigger--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-selector__trigger--error {
+  border-color: var(--error-1);
+  --tw-ring-color: var(--error-1);
+}
+
+.wm-selector__trigger--error:hover:not(.wm-selector__trigger--disabled) {
+  border-color: var(--error-2);
+}
+
+.wm-selector__trigger--success {
+  border-color: var(--success-1);
+  --tw-ring-color: var(--success-1);
+}
+
+.wm-selector__trigger--success:hover:not(.wm-selector__trigger--disabled) {
+  border-color: var(--success-2);
+}
+
+.wm-selector__trigger--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  color: var(--text-disabled);
+  border-color: var(--border-secondary);
+}
+
+/* ========== 触发器内容区域 ========== */
+.wm-selector__trigger-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-selector__trigger-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-1);
+}
+
+/* placeholder 颜色与日期选择器一致 */
+.wm-selector__trigger-value[data-placeholder],
+.wm-selector__trigger-value--placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-selector__trigger-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-left: var(--spacing-8);
+}
+
+/* ========== 图标 ========== */
+.wm-selector__icon {
+  flex-shrink: 0;
+}
+
+.wm-selector__icon--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-selector__icon--loading {
+  color: var(--text-tertiary);
+  animation: spin 1s linear infinite;
+}
+
+.wm-selector__icon--error {
+  color: var(--error-1);
+}
+
+.wm-selector__icon--success {
+  color: var(--success-1);
+}
+
+.wm-selector__icon--chevron {
+  color: var(--text-tertiary);
+  transition: transform 200ms ease;
+}
+
+.wm-selector__icon--search {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.wm-selector__trigger[data-state="open"] .wm-selector__icon--chevron {
+  transform: rotate(180deg);
+}
+
+.wm-selector__icon--check {
+  color: var(--primary-1-default);
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+/* ========== 清除按钮 ========== */
+.wm-selector__clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  border-radius: 50%;
+  background-color: var(--border-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.wm-selector__clear-btn:hover {
+  background-color: var(--text-tertiary);
+}
+
+.wm-selector__clear-btn:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-selector__clear-icon {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+  color: var(--white);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== 下拉内容 ========== */
+.wm-selector__content {
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  box-shadow: 0 10px 15px -3px var(--shadow-main), 0 4px 6px -4px var(--shadow-main);
+  z-index: 1100;
+  /* 使下拉内容宽度与触发器一致 */
+  width: var(--radix-select-trigger-width);
+  min-width: var(--radix-select-trigger-width);
+  max-width: var(--radix-select-trigger-width);
+}
+
+.wm-selector__viewport {
+  padding: 0;
+}
+
+/* ========== 选项 ========== */
+.wm-selector__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-8) var(--spacing-12);
+  font-size: var(--text-base);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: background-color 150ms, color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-selector__item[data-highlighted] {
+  background-color: var(--primary-7-bg);
+  color: var(--primary-1-default);
+}
+
+.wm-selector__item[data-disabled] {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.wm-selector__item-indicator {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  padding-left: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+.wm-selector__item-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.wm-selector__item-description {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+/* ========== 空状态 ========== */
+.wm-selector__empty {
+  padding: var(--spacing-24) var(--spacing-16);
+  text-align: center;
+  font-size: var(--text-base);
+  color: var(--text-tertiary);
+}
+
+/* ========== 辅助文本 ========== */
+.wm-selector__helper {
+  font-size: var(--text-sm);
+}
+
+.wm-selector__helper--default {
+  color: var(--text-tertiary);
+}
+
+.wm-selector__helper--error {
+  color: var(--error-1);
+}
+
+.wm-selector__helper--success {
+  color: var(--success-1);
+}
+
+/* ================================================================
+ * SingleSelector Searchable (wm-sselector) — 单选搜索变体样式
+ * ================================================================ */
+
+/* 单选搜索触发器：保持与普通单选相同的固定高度 */
+.wm-sselector__trigger {
+  gap: var(--spacing-4);
+}
+
+.wm-sselector__trigger--active {
+  border-color: var(--primary-1-default);
+}
+
+/* ================================================================
+ * MultiSelector (wm-mselector) — 多选选择器变体样式
+ * ================================================================ */
+
+/* ========== 触发器 ========== */
+.wm-mselector__trigger {
+  height: auto;
+  min-height: 40px;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.wm-selector__trigger--sm.wm-mselector__trigger {
+  min-height: var(--spacing-32);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.wm-mselector__trigger--active {
+  border-color: var(--primary-1-default);
+}
+
+.wm-mselector__trigger-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ========== Chevron 旋转 ========== */
+.wm-mselector__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ========== Placeholder ========== */
+.wm-mselector__placeholder {
+  color: var(--text-quaternary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-20);
+}
+
+/* ========== 内联搜索输入框 ========== */
+.wm-mselector__inline-search {
+  flex: 1;
+  min-width: 40px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-20);
+  font-family: var(--font-family-base);
+  padding: 0;
+}
+
+.wm-mselector__inline-search::placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-mselector__inline-search:disabled {
+  cursor: not-allowed;
+}
+
+/* ========== Tags 容器 ========== */
+.wm-mselector__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-4);
+  min-width: 0;
+}
+
+/* ========== Tag ========== */
+.wm-mselector__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background-color: var(--fill-secondary);
+  color: var(--text-main);
+  border: none;
+  border-radius: var(--radius-2);
+  max-width: 120px; /* no design token for 120px */
+  font-family: var(--font-family-base);
+}
+
+.wm-mselector__tag--sm {
+  padding: 0 var(--spacing-6);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-mselector__tag--overflow {
+  background-color: var(--fill-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* ========== 溢出标签悬浮弹出 ========== */
+.wm-mselector__overflow-popover {
+  background-color: var(--white);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-8);
+  box-shadow: 0 4px 12px var(--shadow-main);
+  z-index: 1000;
+  max-width: 320px;
+  font-family: var(--font-family-base);
+}
+
+.wm-mselector__overflow-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.wm-mselector__tag-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-mselector__tag-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color 150ms;
+  flex-shrink: 0;
+}
+
+.wm-mselector__tag-close:hover {
+  color: var(--text-main);
+}
+
+.wm-mselector__tag-close-icon {
+  width: var(--spacing-12);
+  height: var(--spacing-12);
+}
+
+/* ========== 下拉面板 ========== */
+.wm-mselector__content {
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  box-shadow: 0 10px 15px -3px var(--shadow-main), 0 4px 6px -4px var(--shadow-main);
+  z-index: 1100;
+  width: var(--radix-popover-trigger-width);
+  min-width: var(--radix-popover-trigger-width);
+  max-width: var(--radix-popover-trigger-width);
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  animation: wm-mselector-fade-in 150ms ease-out;
+}
+
+@keyframes wm-mselector-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== 搜索框 ========== */
+.wm-mselector__search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-12);
+  border-bottom: 1px solid var(--border-secondary);
+  flex-shrink: 0;
+}
+
+.wm-mselector__search-icon {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.wm-mselector__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  font-family: var(--font-family-base);
+  padding: 0;
+}
+
+.wm-mselector__search-input::placeholder {
+  color: var(--text-quaternary);
+}
+
+/* ========== 全选栏 ========== */
+.wm-mselector__select-all {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-12);
+  border-bottom: none;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  transition: background-color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-mselector__select-all:hover {
+  background-color: var(--fill-quaternary);
+}
+
+.wm-mselector__select-all-text {
+  flex: 1;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-main);
+}
+
+.wm-mselector__select-all-count {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+}
+
+/* ========== 复选框 ========== */
+/* 注意：下拉列表中的复选框现已使用 Radix Checkbox + checkbox.css BEM 类 */
+/* 旧的 .wm-mselector__checkbox 样式已移除 */
+
+/* ========== 禁用状态下已选 Tag 样式 ========== */
+.wm-selector__trigger--disabled .wm-mselector__tag {
+  background-color: var(--border-secondary);
+  color: var(--text-tertiary);
+}
+
+.wm-selector__trigger--disabled .wm-mselector__tag-close {
+  display: none;
+}
+
+/* ========== 选项列表 ========== */
+.wm-mselector__list {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ========== 选项 ========== */
+.wm-mselector__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-12);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-mselector__item:hover:not(.wm-mselector__item--disabled) {
+  background-color: var(--fill-quaternary);
+}
+
+.wm-mselector__item--highlighted {
+  background-color: var(--fill-quaternary);
+}
+
+.wm-mselector__item--selected {
+  color: var(--text-main);
+}
+
+.wm-mselector__item--disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.wm-mselector__item-label {
+  flex: 1;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========== Footer ========== */
+.wm-mselector__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-6) var(--spacing-12);
+  border-top: 1px solid var(--border-secondary);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  font-family: var(--font-family-base);
+}
+
+/* ========== 无障碍 ========== */
+@media (prefers-reduced-motion: reduce) {
+  .wm-mselector__content {
+    animation: none;
+  }
+}
+
+/* ================================================================
+ * TreeSelector (wm-treeselector) — 树形多选选择器变体样式
+ * ================================================================ */
+
+.wm-treeselector__content {
+  max-height: 360px;
+}
+
+.wm-treeselector__list {
+  padding: var(--spacing-4) 0;
+}
+
+/* ========== 树节点行 ========== */
+.wm-treeselector__node {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6) var(--spacing-12);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 150ms;
+  font-family: var(--font-family-base);
+}
+
+.wm-treeselector__node:hover:not(.wm-treeselector__node--disabled) {
+  background-color: var(--primary-7-bg);
+}
+
+.wm-treeselector__node:hover:not(.wm-treeselector__node--disabled) .wm-treeselector__node-label {
+  color: var(--primary-1-default);
+}
+
+.wm-treeselector__node--disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========== 展开箭头 ========== */
+.wm-treeselector__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.wm-treeselector__arrow-icon {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  color: var(--text-tertiary);
+  transition: transform 200ms ease;
+}
+
+.wm-treeselector__arrow-icon--expanded {
+  transform: rotate(90deg);
+}
+
+/* ========== 节点标签 ========== */
+.wm-treeselector__node-label {
+  flex: 1;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========== 无障碍 ========== */
+@media (prefers-reduced-motion: reduce) {
+  .wm-treeselector__arrow-icon {
+    transition: none;
+  }
+}

@@ -1,0 +1,85 @@
+/**
+ * Notification Container Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Notification Container 基础样式 ========== */
+.wm-notification-container {
+  position: fixed;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.wm-notification-container > * {
+  pointer-events: auto;
+}
+
+/* ========== Position Variants ========== */
+/* Top Right */
+.wm-notification-container--top-right {
+  top: 24px;
+  right: 24px;
+}
+
+/* Top Left */
+.wm-notification-container--top-left {
+  top: 24px;
+  left: 24px;
+}
+
+/* Bottom Right */
+.wm-notification-container--bottom-right {
+  bottom: 24px;
+  right: 24px;
+  flex-direction: column-reverse;
+}
+
+/* Bottom Left */
+.wm-notification-container--bottom-left {
+  bottom: 24px;
+  left: 24px;
+  flex-direction: column-reverse;
+}
+
+/* Top Center */
+.wm-notification-container--top-center {
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Bottom Center */
+.wm-notification-container--bottom-center {
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+}
+
+/* ========== Responsive adjustments ========== */
+@media (max-width: 768px) {
+  .wm-notification-container--top-right,
+  .wm-notification-container--bottom-right {
+    right: 16px;
+  }
+
+  .wm-notification-container--top-left,
+  .wm-notification-container--bottom-left {
+    left: 16px;
+  }
+
+  .wm-notification-container--top-right,
+  .wm-notification-container--top-left,
+  .wm-notification-container--top-center {
+    top: 16px;
+  }
+
+  .wm-notification-container--bottom-right,
+  .wm-notification-container--bottom-left,
+  .wm-notification-container--bottom-center {
+    bottom: 16px;
+  }
+}

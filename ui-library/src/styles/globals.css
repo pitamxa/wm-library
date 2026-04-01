@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import './theme.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: var(--fontsize-16);
+  /* Typography sizes — 引用 base.css 中的 fontsize 变量 */
+  --text-3xl: var(--fontsize-30);
+  --text-2xl: var(--fontsize-24);
+  --text-xl: var(--fontsize-20);
+  --text-lg: var(--fontsize-18);
+  --text-base: var(--fontsize-14);
+  --text-sm: var(--fontsize-12);
+  
+  /* ====== Global Application Colors ====== */
+  /* The default background color for the application. */
+  --background: var(--white);
+  /* The default color for elements or text that appears on top of the background. */
+  --foreground: var(--text-main);
+  
+  /* The primary color used for buttons, links, and other interactive elements. */
+  --primary: var(--primary-1-default);
+  /* The default color for text or elements that appear on top of primary colored elements. */
+  --primary-foreground: var(--white);
+  
+  /* The secondary color used for secondary(but NOT-DESTRUCTIVE) buttons and interactive elements. */
+  --secondary: var(--neutral-6);
+  /* The default color for text or elements that appear on top of secondary colored elements. */
+  --secondary-foreground: var(--text-main);
+  
+  /* The muted color used for less prominent elements, such as disabled buttons or disabled text. */
+  --muted: var(--neutral-7);
+  /* The default color for text or elements that appear on top of muted colored elements. */
+  --muted-foreground: var(--text-tertiary);
+  
+  /* The accent color used for highlights, links, and other interactive elements. */
+  --accent: var(--primary-1-default);
+  /* The default color for text or elements that appear on top of accent colored elements. */
+  --accent-foreground: var(--white);
+  
+  /* The color used for background in destructive actions, such as delete buttons or error messages. */
+  --destructive: var(--error-1);
+  /* The default color for text or elements that appear on top of destructive colored elements. */
+  --destructive-foreground: var(--white);
+  
+  /* The default border color for elements such as inputs, buttons, and other containers. */
+  --border: var(--border-main);
+  
+  /* ====== Global Font Weights ====== */
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  
+  /* The color for focus rings, outlines, and other focus indicators. */
+  --ring: var(--primary-1-default);
+  
+  /* The default border radius for elements such as buttons, tooltip, and other containers. */
+  --radius: var(--radius-4);
+
+  /* ====== Card & Popover ====== */
+  --card: var(--white);
+  --card-foreground: var(--text-main);
+  --popover: var(--white);
+  --popover-foreground: var(--text-main);
+
+  /* ====== Input ====== */
+  --input: var(--border-main);
+  --input-background: var(--white);
+
+  /* ====== Chart Colors ====== */
+  --chart-1: var(--primary-1-default);
+  --chart-2: var(--success-2);
+  --chart-3: var(--warning-2);
+  --chart-4: var(--error-2);
+  --chart-5: var(--purple-3);
+
+  /* ====== Sidebar ====== */
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--text-main);
+  --sidebar-primary: var(--primary-1-default);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--primary-8-bg);
+  --sidebar-accent-foreground: var(--text-main);
+  --sidebar-border: var(--border-secondary);
+  --sidebar-ring: var(--primary-1-default);
+}
+
+@theme inline {
+  --font-sans: var(--font-family-base);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-card);
+  --radius-xl: var(--radius-dialog);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family-base);
+  }
+
+  /* Lucide React 图标全局 stroke-width 设为 1.5px */
+  svg.lucide {
+    stroke-width: 1.5px;
+  }
+}
+
+/**
+ * Base typography.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-family: var(--font-family-base);
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: var(--font-family-base);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-family: var(--font-family-base);
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-family: var(--font-family-base);
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-family: var(--font-family-base);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* ======================================================================
+ * 数据录入组件统一禁用状态
+ * 所有 Data-Entry 组件在 disabled 状态下共享同一组颜色 token，
+ * 同时取消所有 :hover 交互效果。
+ * ====================================================================== */
+
+/* ---- 1. 容器 / 包装器：背景 + 边框 + 光标 ---- */
+.wm-input__wrapper--disabled,
+.wm-input-number__wrapper--disabled,
+.wm-search__container--disabled,
+.wm-selector__trigger--disabled,
+.wm-datepicker__trigger--disabled,
+.wm-datepicker__range-input--disabled,
+.wm-textarea__input:disabled,
+.wm-textarea__input:read-only {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  cursor: not-allowed;
+}
+
+/* ---- 2. 容器 hover 取消 ---- */
+.wm-input__wrapper--disabled:hover,
+.wm-input-number__wrapper--disabled:hover,
+.wm-search__container--disabled:hover,
+.wm-selector__trigger--disabled:hover,
+.wm-datepicker__trigger--disabled:hover,
+.wm-datepicker__range-input--disabled:hover,
+.wm-textarea__input:disabled:hover,
+.wm-textarea__input:read-only:hover {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+/* ---- 3. 文本 / 图标颜色：统一使用 --text-disabled ---- */
+.wm-input__wrapper--disabled,
+.wm-input__field:disabled,
+.wm-input-number__wrapper--disabled,
+.wm-input-number__field:disabled,
+.wm-search__container--disabled,
+.wm-search__input:disabled,
+.wm-selector__trigger--disabled,
+.wm-datepicker__trigger--disabled,
+.wm-datepicker__trigger--disabled .wm-datepicker__icon-btn,
+.wm-datepicker__trigger--disabled .wm-datepicker__trigger-value,
+.wm-datepicker__range-input--disabled .wm-datepicker__range-input-icon,
+.wm-datepicker__trigger--range-wrapper--disabled .wm-datepicker__range-dash,
+.wm-datepicker__trigger--range-wrapper--disabled .wm-datepicker__range-input-text,
+.wm-textarea__input:disabled,
+.wm-textarea__input:read-only,
+.wm-checkbox-item--disabled,
+.wm-radio-item--disabled,
+.wm-radio-item__label--disabled {
+  color: var(--text-disabled);
+}
+
+/* ---- 4. Checkbox / Radio 内控件 disabled ---- */
+.wm-checkbox-item__box--disabled,
+.wm-radio-item__button--disabled {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  cursor: not-allowed;
+}
+
+/* ---- 5. Search 按钮区域 disabled ---- */
+.wm-search__container--disabled .wm-search__button-bg,
+.wm-search__container--disabled .wm-search__button-wrapper:hover .wm-search__button-bg {
+  background-color: var(--fill-tertiary);
+}
+
+.wm-search__button:disabled .wm-search__search-icon,
+.wm-search__button:disabled:hover .wm-search__search-icon {
+  color: var(--text-disabled);
+}
+
+/* ---- 6. InputNumber dial 变体 disabled ---- */
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled {
+  background-color: var(--fill-tertiary);
+}
+
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled .wm-input-number__dial-btn,
+.wm-input-number__wrapper--dial.wm-input-number__wrapper--disabled .wm-input-number__field--dial {
+  color: var(--text-disabled);
+}
+
+/* ---- 7. Switch disabled（保持圆角独立样式，仅统一色值） ---- */
+.wm-switch__control--disabled {
+  background-color: var(--fill-tertiary);
+  cursor: not-allowed;
+}

@@ -1,0 +1,16 @@
+/**
+ * Sidebar Component Variables
+ * Used by shadcn/ui Sidebar component
+ */
+
+/* ========== Sidebar Component Variables ========== */
+:root {
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--text-secondary);
+  --sidebar-primary: var(--primary-1-default);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--primary-1-default);
+  --sidebar-accent-foreground: var(--white);
+  --sidebar-border: var(--border-main);
+  --sidebar-ring: var(--primary-1-default);
+}

@@ -1,0 +1,273 @@
+/**
+ * Upload Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== 容器 ========== */
+.wm-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  width: 100%;
+  font-family: var(--font-family-base);
+}
+
+/* ========== 触发区域：按钮 + 提示文字 ========== */
+.wm-upload__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+/* 上传按钮 */
+.wm-upload__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: 5px var(--spacing-16);
+  background-color: var(--primary-1-default);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.wm-upload__button:hover:not(.wm-upload__button--disabled) {
+  background-color: var(--primary-2-hover);
+}
+
+.wm-upload__button:active:not(.wm-upload__button--disabled) {
+  background-color: var(--primary-3-active);
+}
+
+.wm-upload__button--disabled {
+  background-color: var(--primary-6-disabled);
+  cursor: not-allowed;
+}
+
+.wm-upload__button-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-upload__button-text {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  font-family: var(--font-family-base);
+}
+
+/* 提示文字 */
+.wm-upload__hint {
+  flex: 1;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-22);
+  color: var(--text-3);
+  font-family: var(--font-family-base);
+}
+
+/* ========== 文件列表 ========== */
+.wm-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  width: 100%;
+}
+
+/* ========== 行容器（item + 外部删除按钮） ========== */
+.wm-upload__row {
+  position: relative;
+  /* 右侧留出 24px 空间给删除按钮 */
+  padding-right: 24px;
+}
+
+/* ========== 文件列表项（背景区域） ========== */
+.wm-upload__item {
+  display: flex;
+  align-items: center;
+  padding: 7px var(--spacing-12);
+  background-color: var(--fill-quaternary);
+  border-radius: var(--radius-3);
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.wm-upload__item:hover {
+  background-color: var(--fill-tertiary);
+}
+
+/* 文件信息区（图标 + 文件名） */
+.wm-upload__item-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-upload__item-file-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-1);
+}
+
+.wm-upload__item-name {
+  flex: 1;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+  font-family: var(--font-family-base);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-upload__item--error .wm-upload__item-name {
+  color: var(--error-2);
+}
+
+/* ========== 状态图标区 ========== */
+.wm-upload__item-status {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-8);
+}
+
+/* 进度圆环 */
+.wm-upload__progress-bg {
+  fill: var(--primary-5-border);
+}
+
+.wm-upload__progress-track {
+  fill: none;
+  stroke: var(--primary-1-default);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* 成功勾选 */
+.wm-upload__icon-success {
+  color: var(--success-2);
+}
+
+/* 进度环背景 */
+.wm-upload__progress-ring-bg {
+  fill: none;
+  stroke: var(--primary-5-border);
+  stroke-width: 3;
+}
+
+/* 下载图标 */
+.wm-upload__icon-download {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+  margin-left: var(--spacing-8);
+}
+
+.wm-upload__icon-download:hover {
+  color: var(--text-main);
+}
+
+/* 重试链接 */
+.wm-upload__retry {
+  flex-shrink: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--primary-1-default);
+  font-family: var(--font-family-base);
+  cursor: pointer;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: var(--spacing-8);
+}
+
+.wm-upload__retry:hover {
+  color: var(--primary-2-hover);
+}
+
+/* ========== 删除按钮（绝对定位在 item 外部右侧） ========== */
+.wm-upload__item-delete {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: transparent;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* hover 行时显示删除按钮 */
+.wm-upload__row:hover .wm-upload__item-delete {
+  color: var(--text-tertiary);
+}
+
+.wm-upload__item-delete:hover {
+  color: var(--primary-1-default);
+}
+
+/* ========== Label (表单场景) ========== */
+.wm-upload__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+  font-family: var(--font-family-base);
+}
+
+.wm-upload__label-required {
+  color: var(--error-1);
+  margin-left: var(--spacing-4);
+}
+
+/* ========== Helper Text ========== */
+.wm-upload__helper {
+  margin: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-3);
+  font-family: var(--font-family-base);
+}
+
+.wm-upload__helper--error {
+  color: var(--error-1);
+}
+
+.wm-upload__helper--success {
+  color: var(--success-1);
+}

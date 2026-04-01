@@ -1,0 +1,158 @@
+/**
+ * WMDrawer Component Styles
+ * 抽屉组件样式 - 遵循BEM命名规范
+ */
+
+/* ========== 遮罩层 ========== */
+.wm-drawer__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--mask-bg);
+  z-index: 1000;
+  animation: wm-drawer-overlay-fade-in 0.3s ease-out;
+}
+
+.wm-drawer__overlay[data-state=closed] {
+  animation: wm-drawer-overlay-fade-out 0.3s ease-in;
+}
+
+@keyframes wm-drawer-overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wm-drawer-overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ========== Drawer容器 ========== */
+.wm-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  max-width: 768px;
+  background-color: var(--white);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  animation: wm-drawer-slide-in-right 0.3s ease-out;
+}
+
+.wm-drawer[data-state=closed] {
+  animation: wm-drawer-slide-out-right 0.3s ease-in;
+}
+
+@keyframes wm-drawer-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes wm-drawer-slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ========== 标题栏 ========== */
+.wm-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 var(--spacing-24);
+  height: 50px;
+  flex-shrink: 0;
+  background-color: var(--primary-1-default);
+}
+
+.wm-drawer__title {
+  color: var(--white);
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--lineheight-24);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========== 关闭按钮 - 位于抽屉左侧边缘，垂直居中 ========== */
+.wm-drawer__close {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  background-color: var(--white);
+  color: var(--primary-1-default);
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.wm-drawer__close svg {
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+}
+
+/* ========== 内容区 ========== */
+.wm-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: var(--spacing-32) var(--spacing-48);
+  color: var(--text-main);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ========== 底部按钮区 ========== */
+.wm-drawer__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-16);
+  padding: var(--spacing-12) 0;
+  flex-shrink: 0;
+  background-color: var(--white);
+  box-shadow: 0px 0px 4px 0px var(--shadow-main);
+}
+
+.wm-drawer__footer .wm-button {
+  width: 140px;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .wm-drawer {
+    width: 85%;
+  }
+}

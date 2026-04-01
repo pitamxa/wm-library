@@ -1,0 +1,179 @@
+/**
+ * Pima Breadcrumb Component Styles
+ * 基于 shadcn/ui Breadcrumb 原语，使用 BEM + CSS 变量覆盖默认 Tailwind 样式
+ * 语义结构：nav[data-slot=breadcrumb] > ol > li
+ */
+
+/* ========== 基础容器（覆盖 shadcn nav） ========== */
+.pima-breadcrumb {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-tertiary);
+  font-family: var(--font-family-base);
+}
+
+/* ========== 列表（覆盖 shadcn BreadcrumbList 的 Tailwind 默认） ========== */
+.pima-breadcrumb__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* ========== 面包屑项（覆盖 shadcn BreadcrumbItem） ========== */
+.pima-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+/* ========== 分隔符（覆盖 shadcn BreadcrumbSeparator） ========== */
+.pima-breadcrumb__separator {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 var(--spacing-8);
+  color: var(--text-placeholder);
+}
+
+.pima-breadcrumb__separator svg {
+  width: var(--fontsize-12);
+  height: var(--fontsize-12);
+}
+
+/* ========== 链接样式（覆盖 shadcn BreadcrumbLink） ========== */
+.pima-breadcrumb__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: var(--text-placeholder);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-weight: 300;
+  transition: color 200ms;
+  border-radius: var(--radius-2);
+}
+
+.pima-breadcrumb__link:hover {
+  color: var(--primary-1-default);
+}
+
+.pima-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== 当前页（覆盖 shadcn BreadcrumbPage） ========== */
+.pima-breadcrumb__current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: var(--text-tertiary);
+  cursor: default;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+/* ========== 图标 ========== */
+.pima-breadcrumb__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pima-breadcrumb__icon svg {
+  width: var(--fontsize-14);
+  height: var(--fontsize-14);
+}
+
+/* ========== 折叠省略按钮 ========== */
+.pima-breadcrumb__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-4);
+  font-size: inherit;
+  line-height: inherit;
+  transition: color 200ms, background-color 200ms;
+}
+
+.pima-breadcrumb__ellipsis svg {
+  width: var(--fontsize-16);
+  height: var(--fontsize-16);
+}
+
+.pima-breadcrumb__ellipsis:hover {
+  color: var(--primary-1-default);
+  background-color: var(--primary-8-bg);
+}
+
+.pima-breadcrumb__ellipsis:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== 尺寸变体 ========== */
+.pima-breadcrumb--sm {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.pima-breadcrumb--sm .pima-breadcrumb__icon svg {
+  width: var(--fontsize-12);
+  height: var(--fontsize-12);
+}
+
+.pima-breadcrumb--sm .pima-breadcrumb__separator svg {
+  width: var(--fontsize-12);
+  height: var(--fontsize-12);
+}
+
+.pima-breadcrumb--sm .pima-breadcrumb__ellipsis svg {
+  width: var(--fontsize-14);
+  height: var(--fontsize-14);
+}
+
+.pima-breadcrumb--lg {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.pima-breadcrumb--lg .pima-breadcrumb__icon svg {
+  width: var(--fontsize-16);
+  height: var(--fontsize-16);
+}
+
+.pima-breadcrumb--lg .pima-breadcrumb__separator svg {
+  width: var(--fontsize-14);
+  height: var(--fontsize-14);
+}
+
+.pima-breadcrumb--lg .pima-breadcrumb__ellipsis svg {
+  width: var(--fontsize-18);
+  height: var(--fontsize-18);
+}
+
+/* ========== 禁用状态 ========== */
+.pima-breadcrumb__link--disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}

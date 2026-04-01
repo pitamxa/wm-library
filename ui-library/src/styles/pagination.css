@@ -1,0 +1,489 @@
+/**
+ * Pagination Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Pagination 基础样式 ========== */
+.wm-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  user-select: none;
+  flex-wrap: wrap;
+  width: 100%;
+  font-family: var(--font-family-base);
+}
+
+/* ========== Pagination 尺寸 ========== */
+.wm-pagination--sm {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+/* ========== 按钮基础样式 ========== */
+.wm-pagination__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pagination-bg);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 150ms;
+  outline: none;
+  user-select: none;
+}
+
+.wm-pagination--sm .wm-pagination__button {
+  width: var(--spacing-28);
+  height: var(--spacing-28);
+  padding: 0;
+}
+
+.wm-pagination--default .wm-pagination__button {
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+  padding: 0;
+}
+
+.wm-pagination--lg .wm-pagination__button {
+  width: var(--spacing-40);
+  height: var(--spacing-40);
+  padding: 0;
+}
+
+.wm-pagination__button:hover:not(:disabled) {
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+.wm-pagination__button:active:not(:disabled) {
+  background-color: var(--fill-tertiary);
+  border-color: var(--primary-5-border);
+}
+
+.wm-pagination__button:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-pagination__button:disabled {
+  cursor: not-allowed;
+  color: var(--text-quaternary);
+}
+
+/* ========== 按钮图标 ========== */
+.wm-pagination--sm .wm-pagination__icon {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-pagination--default .wm-pagination__icon {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.wm-pagination--lg .wm-pagination__icon {
+  width: var(--spacing-18);
+  height: var(--spacing-18);
+}
+
+/* ========== 页码按钮 ========== */
+.wm-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.wm-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pagination-bg);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 150ms;
+  outline: none;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.wm-pagination--sm .wm-pagination__page {
+  min-width: var(--spacing-28);
+  height: var(--spacing-28);
+  padding: 0 var(--spacing-8);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__page {
+  min-width: var(--spacing-32);
+  height: var(--spacing-32);
+  padding: 0 var(--spacing-10);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__page {
+  min-width: var(--spacing-40);
+  height: var(--spacing-40);
+  padding: 0 var(--spacing-12);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-pagination__page:hover:not(:disabled):not(.wm-pagination__page--active) {
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+.wm-pagination__page:active:not(:disabled):not(.wm-pagination__page--active) {
+  background-color: var(--fill-tertiary);
+  border-color: var(--primary-5-border);
+}
+
+.wm-pagination__page:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-pagination__page--active {
+  background-color: var(--primary-1-default);
+  border-color: var(--primary-1-default);
+  color: var(--white);
+  cursor: default;
+}
+
+.wm-pagination__page:disabled {
+  cursor: not-allowed;
+  color: var(--text-quaternary);
+}
+
+/* ========== 省略号 ========== */
+.wm-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  letter-spacing: var(--spacing-2);
+}
+
+.wm-pagination--sm .wm-pagination__ellipsis {
+  width: var(--spacing-28);
+  height: var(--spacing-28);
+  font-size: var(--fontsize-12);
+}
+
+.wm-pagination--default .wm-pagination__ellipsis {
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+  font-size: var(--fontsize-14);
+}
+
+.wm-pagination--lg .wm-pagination__ellipsis {
+  width: var(--spacing-40);
+  height: var(--spacing-40);
+  font-size: var(--fontsize-16);
+}
+
+/* ========== 总数显示 ========== */
+.wm-pagination__total {
+  color: var(--text-secondary);
+  margin-right: var(--spacing-8);
+}
+
+.wm-pagination--sm .wm-pagination__total {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__total {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__total {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+/* ========== 每页条数选择器 ========== */
+.wm-pagination__size-changer {
+  margin-right: var(--spacing-8);
+}
+
+.wm-pagination__size-select {
+  background-color: var(--pagination-bg);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 150ms;
+  outline: none;
+  font-family: inherit;
+  padding: 0 var(--spacing-28) 0 var(--spacing-8);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23444444' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-8) center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.wm-pagination--sm .wm-pagination__size-select {
+  height: var(--spacing-28);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__size-select {
+  height: var(--spacing-32);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__size-select {
+  height: var(--spacing-40);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-pagination__size-select:hover:not(:disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-pagination__size-select:focus {
+  border-color: var(--primary-1-default);
+  /* 移除 outline 样式 */
+}
+
+.wm-pagination__size-select:disabled {
+  cursor: not-allowed;
+  color: var(--text-quaternary);
+  background-color: var(--fill-main);
+}
+
+/* ========== 快速跳转 ========== */
+.wm-pagination__jumper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-left: var(--spacing-8);
+}
+
+.wm-pagination__jumper-text {
+  color: var(--text-secondary);
+}
+
+.wm-pagination--sm .wm-pagination__jumper-text {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__jumper-text {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__jumper-text {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-pagination__jumper-input {
+  background-color: var(--pagination-bg);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  color: var(--text-main);
+  text-align: center;
+  transition: all 150ms;
+  outline: none;
+  font-family: inherit;
+}
+
+.wm-pagination--sm .wm-pagination__jumper-input {
+  width: var(--spacing-48);
+  height: var(--spacing-28);
+  padding: 0 var(--spacing-4);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__jumper-input {
+  width: 56px; /* no design token for 56px */
+  height: var(--spacing-32);
+  padding: 0 var(--spacing-8);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__jumper-input {
+  width: 64px; /* no design token for 64px */
+  height: var(--spacing-40);
+  padding: 0 var(--spacing-8);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-pagination__jumper-input:hover:not(:disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-pagination__jumper-input:focus {
+  border-color: var(--primary-1-default);
+  /* 移除 outline 样式 */
+}
+
+.wm-pagination__jumper-input:disabled {
+  cursor: not-allowed;
+  color: var(--text-quaternary);
+  background-color: var(--fill-main);
+}
+
+/* 移除数字输入框的箭头 */
+.wm-pagination__jumper-input::-webkit-inner-spin-button,
+.wm-pagination__jumper-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.wm-pagination__jumper-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ========== 跳转按钮 ========== */
+.wm-pagination__jumper-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-1-default);
+  border: 1px solid var(--primary-1-default);
+  border-radius: var(--radius-4);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 150ms;
+  outline: none;
+  user-select: none;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.wm-pagination--sm .wm-pagination__jumper-button {
+  height: var(--spacing-28);
+  padding: 0 var(--spacing-12);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__jumper-button {
+  height: var(--spacing-32);
+  padding: 0 var(--spacing-16);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__jumper-button {
+  height: var(--spacing-40);
+  padding: 0 var(--spacing-20);
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-pagination__jumper-button:hover:not(:disabled) {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+}
+
+.wm-pagination__jumper-button:active:not(:disabled) {
+  background-color: var(--primary-3-active);
+  border-color: var(--primary-3-active);
+}
+
+.wm-pagination__jumper-button:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-pagination__jumper-button:disabled {
+  cursor: not-allowed;
+  background-color: var(--primary-6-disabled);
+  border-color: var(--primary-6-disabled);
+  color: var(--white);
+}
+
+/* ========== 简洁模式 ========== */
+.wm-pagination--simple {
+  gap: var(--spacing-12);
+}
+
+.wm-pagination__simple-text {
+  color: var(--text-main);
+  user-select: none;
+}
+
+.wm-pagination--sm .wm-pagination__simple-text {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-pagination--default .wm-pagination__simple-text {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-pagination--lg .wm-pagination__simple-text {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+/* ========== 禁用状态 ========== */
+.wm-pagination--disabled {
+  pointer-events: none;
+  color: var(--text-disabled);
+}
+
+/* ========== 无障碍支持 ========== */
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .wm-pagination__button,
+  .wm-pagination__page,
+  .wm-pagination__size-select,
+  .wm-pagination__jumper-input {
+    border-width: 2px;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-pagination__button,
+  .wm-pagination__page,
+  .wm-pagination__size-select,
+  .wm-pagination__jumper-input {
+    transition: none;
+  }
+}
+
+/* ========== 分页器下拉选项特殊样式 ========== */
+.wm-pagination__selector-dropdown {
+  width: auto !important;
+  min-width: var(--radix-select-trigger-width);
+  max-width: none !important;
+  font-family: var(--font-family-base);
+}
+
+.wm-pagination__selector-dropdown .wm-selector__item {
+  white-space: nowrap;
+}

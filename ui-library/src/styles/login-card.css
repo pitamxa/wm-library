@@ -1,0 +1,61 @@
+/**
+ * Login Card Styles
+ */
+
+.login-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: var(--white);
+  min-height: auto;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--elevation-sm);
+}
+
+/* 链接样式 */
+.login-card__link {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-card__link:hover {
+  color: var(--primary-1-default);
+}
+
+/* 覆写 Login Card 内部的 Input Label 样式 */
+.login-card .wm-input__label {
+  color: var(--text-main);
+}
+
+/* 覆写 Login Card 标题和描述的间距 */
+.login-card .wm-card__description {
+  margin-top: 0;
+}
+
+/* 表单布局 */
+.login-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-card__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.login-card__actions {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

@@ -1,0 +1,180 @@
+/**
+ * Message Component Styles
+ * 轻量级全局提示，顶部居中显示
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Message 基础样式 ========== */
+.wm-message {
+  --wm-message-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--white);
+  box-shadow: 0 4px 12px var(--shadow-main);
+  border-radius: var(--wm-message-radius);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-main);
+  pointer-events: auto;
+  animation: wm-message-fade-in 200ms ease-out;
+  position: relative;
+  max-width: 600px;
+}
+
+/* ========== Icon 样式 ========== */
+.wm-message__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.wm-message__icon-svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ========== Content 样式 ========== */
+.wm-message__content {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== Close Button 样式 ========== */
+.wm-message__close {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color 150ms;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.wm-message__close:hover {
+  color: var(--text-main);
+}
+
+.wm-message__close-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ========== Type Variants ========== */
+/* Success */
+.wm-message--success .wm-message__icon {
+  color: var(--success-1);
+}
+
+/* Error */
+.wm-message--error .wm-message__icon {
+  color: var(--error-1);
+}
+
+/* Warning */
+.wm-message--warning .wm-message__icon {
+  color: var(--warning-1);
+}
+
+/* Info */
+.wm-message--info .wm-message__icon {
+  color: var(--primary-1-default);
+}
+
+/* Loading */
+.wm-message--loading .wm-message__icon {
+  color: var(--primary-1-default);
+}
+
+/* ========== Loading spinner ========== */
+.wm-message__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--primary-5-border);
+  border-top-color: var(--primary-1-default);
+  border-radius: 50%;
+  animation: wm-message-spin 600ms linear infinite;
+}
+
+/* ========== Container — 全局定位容器 ========== */
+.wm-message-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+/* ========== Animations ========== */
+@keyframes wm-message-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wm-message-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wm-message-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wm-message--closing {
+  animation: wm-message-fade-out 200ms ease-out forwards;
+}
+
+/* ========== Accessibility ========== */
+@media (prefers-reduced-motion: reduce) {
+  .wm-message {
+    animation: none;
+  }
+
+  .wm-message--closing {
+    animation: none;
+    visibility: hidden;
+  }
+
+  .wm-message__spinner {
+    animation: none;
+  }
+}
+
+/* ========== Responsive adjustments ========== */
+@media (max-width: 480px) {
+  .wm-message {
+    max-width: calc(100vw - 32px);
+    font-size: var(--fontsize-12);
+  }
+}

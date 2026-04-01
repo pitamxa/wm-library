@@ -1,0 +1,93 @@
+/**
+ * Loading Component Styles
+ * Using BEM naming convention and Design Tokens
+ */
+
+/* ========== Root Container ========== */
+.wm-loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-1-default);
+  line-height: 1;
+}
+
+/* ========== Sizes ========== */
+.wm-loading--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.wm-loading--default {
+  width: 24px;
+  height: 24px;
+}
+
+.wm-loading--lg {
+  width: 32px;
+  height: 32px;
+}
+
+/* ========== Variants (Colors) ========== */
+.wm-loading--primary {
+  color: var(--primary-1-default);
+}
+
+.wm-loading--secondary {
+  color: var(--text-2);
+}
+
+.wm-loading--white {
+  color: var(--white);
+}
+
+.wm-loading--success {
+  color: var(--success-1);
+}
+
+.wm-loading--warning {
+  color: var(--warning-1);
+}
+
+.wm-loading--error {
+  color: var(--error-1);
+}
+
+/* ========== Animation ========== */
+.wm-loading__icon {
+  animation: wm-loading-spin 1s linear infinite;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes wm-loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== Text (if any) ========== */
+.wm-loading__text {
+  margin-left: 8px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.wm-loading-container--vertical .wm-loading__text {
+  margin-left: 0;
+  margin-top: 8px;
+}
+
+/* ========== Container Layout (Vertical/Horizontal) ========== */
+.wm-loading-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-loading-container--vertical {
+  flex-direction: column;
+}

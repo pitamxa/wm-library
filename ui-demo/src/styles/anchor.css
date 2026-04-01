@@ -1,0 +1,186 @@
+/**
+ * Pima Anchor Component Styles
+ * 锚点导航组件 — 类似 Ant Design Anchor
+ * BEM 命名 + CSS 变量，无硬编码像素值
+ */
+
+/* ========== 容器 ========== */
+.pima-anchor {
+  position: relative;
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-secondary);
+}
+
+/* ========== 左侧轨道线 ========== */
+.pima-anchor__rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-split);
+  border-radius: var(--radius-2);
+}
+
+/* ========== 活动指示条（滑动高亮线） ========== */
+.pima-anchor__indicator {
+  position: absolute;
+  left: 0;
+  width: 2px;
+  background: var(--primary-1-default);
+  border-radius: var(--radius-2);
+  transition: top 0.2s ease, height 0.2s ease;
+}
+
+/* ========== 链接列表 ========== */
+.pima-anchor__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== 单个链接项 ========== */
+.pima-anchor__item {
+  position: relative;
+}
+
+/* ========== 链接 ========== */
+.pima-anchor__link {
+  display: block;
+  padding: var(--spacing-8) 0 var(--spacing-8) var(--spacing-16);
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pima-anchor__link:hover {
+  color: var(--primary-1-default);
+}
+
+.pima-anchor__link--active {
+  color: var(--primary-1-default);
+}
+
+/* ========== 子级链接（缩进） ========== */
+.pima-anchor__link--child {
+  padding-left: var(--spacing-32);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ========== 水平模式 ========== */
+.pima-anchor--horizontal {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pima-anchor--horizontal .pima-anchor__rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  width: auto;
+  height: 2px;
+}
+
+.pima-anchor--horizontal .pima-anchor__indicator {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  height: 2px;
+  width: auto;
+  transition: left 0.2s ease, width 0.2s ease;
+}
+
+.pima-anchor--horizontal .pima-anchor__list {
+  display: flex;
+  gap: var(--spacing-24);
+}
+
+.pima-anchor--horizontal .pima-anchor__link {
+  padding: var(--spacing-8) 0;
+}
+
+/* ========== 静态锚点(无轨道线) ========== */
+.pima-anchor--static .pima-anchor__rail,
+.pima-anchor--static .pima-anchor__indicator {
+  display: none;
+}
+
+.pima-anchor--static .pima-anchor__link {
+  padding-left: 0;
+}
+
+.pima-anchor--static .pima-anchor__link--child {
+  padding-left: var(--spacing-16);
+}
+
+/* ========== 目标区域 demo 用 ========== */
+.pima-anchor-demo__target {
+  padding: var(--spacing-16);
+  border: 1px solid var(--border-split);
+  border-radius: var(--radius-6);
+  background: var(--fill-quaternary);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  color: var(--text-secondary);
+}
+
+/* ========== 替换模式（replace state） ========== */
+.pima-anchor--replace .pima-anchor__link--active {
+  color: var(--primary-3-active);
+}
+
+/* ========== 轨道背景变体 ========== */
+.pima-anchor--rail-bg .pima-anchor__rail {
+  width: 2px;
+  background: var(--fill-secondary);
+  border-radius: var(--radius-2);
+  left: 0;
+}
+
+.pima-anchor--rail-bg .pima-anchor__indicator {
+  width: 2px;
+  border-radius: var(--radius-2);
+  left: 0;
+}
+
+.pima-anchor--rail-bg .pima-anchor__link {
+  padding-left: var(--spacing-20);
+}
+
+.pima-anchor--rail-bg .pima-anchor__link--child {
+  padding-left: var(--spacing-32);
+}
+
+/* 水平 + 轨道背景 */
+.pima-anchor--horizontal.pima-anchor--rail-bg .pima-anchor__rail {
+  height: 2px;
+  width: auto;
+  border-radius: var(--radius-2);
+}
+
+.pima-anchor--horizontal.pima-anchor--rail-bg .pima-anchor__indicator {
+  height: 2px;
+  width: auto;
+  border-radius: var(--radius-2);
+}
+
+.pima-anchor--horizontal.pima-anchor--rail-bg .pima-anchor__link {
+  padding-left: 0;
+  padding-bottom: var(--spacing-12);
+}

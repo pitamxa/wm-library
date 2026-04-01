@@ -1,0 +1,204 @@
+/* ================================================
+   Pima Slider Component Styles
+   ================================================ */
+
+.pima-slider {
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-8) 0;
+  box-sizing: border-box;
+}
+
+/* Rail - 滑轨 */
+.pima-slider__rail {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: var(--neutral-6);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pima-slider--disabled .pima-slider__rail {
+  background-color: var(--neutral-7);
+  cursor: not-allowed;
+}
+
+/* Track - 已选轨道 */
+.pima-slider__track {
+  position: absolute;
+  height: 100%;
+  background-color: var(--primary-1-default);
+  border-radius: var(--radius-2);
+  transition: background-color 0.2s;
+  pointer-events: none;
+}
+
+.pima-slider--disabled .pima-slider__track {
+  background-color: var(--primary-6-disabled);
+}
+
+.pima-slider--range .pima-slider__track {
+  left: 0;
+}
+
+/* Handle - 滑块手柄 */
+.pima-slider__handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: var(--white);
+  border: 2px solid var(--primary-1-default);
+  border-radius: 50%;
+  cursor: grab;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px var(--shadow-secondary);
+}
+
+.pima-slider__handle:hover {
+  border-color: var(--primary-2-hover);
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 2px 8px var(--shadow-main);
+}
+
+.pima-slider__handle--dragging {
+  cursor: grabbing;
+  border-color: var(--primary-2-hover);
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 2px 8px var(--shadow-main);
+}
+
+.pima-slider--disabled .pima-slider__handle {
+  background-color: var(--neutral-7);
+  border-color: var(--primary-6-disabled);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pima-slider--disabled .pima-slider__handle:hover {
+  transform: translate(-50%, -50%);
+}
+
+/* Tooltip - 提示框 */
+.pima-slider__tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-4) var(--spacing-8);
+  background-color: var(--text-main);
+  color: var(--white);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  border-radius: var(--radius-4);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pima-slider__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--text-main);
+}
+
+/* Marks - 标记点 */
+.pima-slider__marks {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin-top: var(--spacing-4);
+}
+
+.pima-slider__mark {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.pima-slider__mark-dot {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--neutral-6);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pima-slider__mark-label {
+  display: inline-block;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.pima-slider--disabled .pima-slider__mark-dot {
+  background-color: var(--neutral-7);
+  cursor: not-allowed;
+}
+
+.pima-slider--disabled .pima-slider__mark-label {
+  color: var(--text-disabled);
+}
+
+/* Focus state for accessibility */
+.pima-slider__handle:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+.pima-slider__rail,
+.pima-slider__track,
+.pima-slider__handle {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================================
+   Slider with Input - 带数字输入框的滑块
+   ================================================ */
+
+.pima-slider-with-input {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
+
+.pima-slider-with-input__slider {
+  flex: 1;
+  min-width: 0;
+}
+
+.pima-slider-with-input__input-number {
+  flex-shrink: 0;
+  width: auto;
+}
+
+/* Override input-number token widths when embedded in slider */
+.pima-slider-with-input__input-number .wm-input-number {
+  margin: 0;
+  --_input-number-field-width: 48px;
+  --_input-number-padding-x: var(--spacing-4);
+  --_input-number-padding-x-compact: var(--spacing-4);
+}
+
+/* Center the text in the embedded input */
+.pima-slider-with-input__input-number .wm-input-number__field {
+  text-align: center;
+}

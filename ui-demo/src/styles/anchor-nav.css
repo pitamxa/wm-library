@@ -1,0 +1,116 @@
+/**
+ * AnchorNav Component Styles
+ * 侧边锚点导航 — 使用 Design Tokens
+ */
+
+/* ---- 组件级配置令牌 ---- */
+.anchor-nav {
+  --_anchor-nav-width: 160px;
+  --_anchor-nav-item-padding-x: var(--spacing-12);
+  --_anchor-nav-item-padding-y: var(--spacing-4);
+  --_anchor-nav-indicator-width: 2px;
+  --_anchor-nav-category-padding-x: var(--spacing-12);
+  --_anchor-nav-category-padding-y: var(--spacing-8);
+}
+
+/* ========== 容器 ========== */
+.anchor-nav {
+  position: sticky;
+  top: var(--spacing-32);
+  width: var(--_anchor-nav-width);
+  min-width: var(--_anchor-nav-width);
+  max-height: calc(100vh - var(--spacing-32) - var(--spacing-32));
+  overflow-y: auto;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  align-self: flex-start;
+  font-family: var(--font-family-base);
+  /* 隐藏滚动条但保留滚动功能 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.anchor-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* 960px 以上显示 */
+@media (min-width: 960px) {
+  .anchor-nav {
+    display: flex;
+  }
+}
+
+/* ========== 分组 ========== */
+.anchor-nav__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.anchor-nav__group + .anchor-nav__group {
+  margin-top: var(--spacing-8);
+}
+
+/* ========== 分类标题 ========== */
+.anchor-nav__category {
+  padding: var(--_anchor-nav-category-padding-y) var(--_anchor-nav-category-padding-x);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  font-family: var(--font-family-base);
+  color: var(--text-main);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+/* ========== 导航项 ========== */
+.anchor-nav__item {
+  display: block;
+  padding: var(--_anchor-nav-item-padding-y) var(--_anchor-nav-item-padding-x);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  border-left: var(--_anchor-nav-indicator-width) solid transparent;
+  cursor: pointer;
+  transition: color 150ms, border-color 150ms;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+  font-family: var(--font-family-base);
+}
+
+.anchor-nav__item:hover {
+  color: var(--text-secondary);
+}
+
+/* 激活态 */
+.anchor-nav__item--active {
+  color: var(--primary-1-default);
+  border-left-color: var(--primary-1-default);
+}
+
+/* ========== 居中 flex 布局 ========== */
+.app-layout {
+  display: flex;
+  gap: var(--spacing-16);
+  max-width: 80rem;
+  margin: 0 auto;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.app-layout > .app-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+}

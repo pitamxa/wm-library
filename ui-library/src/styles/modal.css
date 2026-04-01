@@ -1,0 +1,270 @@
+/**
+ * WMModal Component Styles
+ * Modal组件样式 - 遵循BEM命名规范
+ */
+
+/* ========== 遮罩层 ========== */
+.wm-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--mask-bg);
+  z-index: 1000;
+  animation: wm-modal-overlay-fade-in 0.2s ease-out;
+}
+
+@keyframes wm-modal-overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========== Modal容器 ========== */
+.wm-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: var(--radius-dialog);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: wm-modal-content-zoom-in 0.2s ease-out;
+  outline: none;
+}
+
+@keyframes wm-modal-content-zoom-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ========== 尺寸变体 ========== */
+.wm-modal[data-size="small"] {
+  width: 416px;
+}
+
+.wm-modal[data-size="default"] {
+  width: 520px;
+}
+
+.wm-modal[data-size="large"] {
+  width: 800px;
+}
+
+/* ========== 标题栏 ========== */
+.wm-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px 8px 24px;
+  flex-shrink: 0;
+}
+
+/* Header 带分割线 */
+.wm-modal__header--bordered {
+  padding-bottom: var(--spacing-8);
+  border-bottom: 1px solid var(--fill-main);
+}
+
+.wm-modal__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-modal__title {
+  color: var(--text-main);
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fontsize-18);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--lineheight-26);
+}
+
+/* ========== 状态图标 ========== */
+.wm-modal__status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-modal__status-icon--loading {
+  color: var(--primary-1-default);
+  animation: wm-modal-icon-spin 1s linear infinite;
+}
+
+.wm-modal__status-icon--success {
+  color: var(--success-1);
+}
+
+.wm-modal__status-icon--error {
+  color: var(--error-1);
+}
+
+.wm-modal__status-icon--warning {
+  color: var(--warning-1);
+}
+
+.wm-modal__status-icon--info {
+  color: var(--primary-1-default);
+}
+
+@keyframes wm-modal-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== 关闭按钮 ========== */
+.wm-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--text-tertiary);
+  border-radius: var(--radius-4);
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  flex-shrink: 0;
+  margin-left: var(--spacing-8);
+  outline: none;
+}
+
+.wm-modal__close:hover {
+  background-color: transparent;
+  color: var(--text-secondary);
+}
+
+.wm-modal__close:active {
+  background-color: transparent;
+  color: var(--text-main);
+}
+
+.wm-modal__close:focus-visible {
+  outline: 2px solid var(--border-main);
+  outline-offset: 2px;
+}
+
+.wm-modal__close:disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.wm-modal__close:disabled:hover {
+  background-color: transparent;
+  color: var(--text-tertiary);
+}
+
+/* ========== 内容区 ========== */
+.wm-modal__body {
+  padding: 0 24px 20px 24px;
+  color: var(--text-secondary);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* bordered 模式下 body 上下 padding 均为 24px */
+.wm-modal[data-bordered="true"] .wm-modal__body {
+  padding-top: var(--spacing-24);
+  padding-bottom: var(--spacing-24);
+}
+
+/* 有状态图标时，body 左侧缩进与标题文字对齐（图标 20px + gap 8px） */
+.wm-modal[data-has-icon="true"] .wm-modal__body {
+  padding-left: calc(var(--spacing-24) + 20px + var(--spacing-8));
+}
+
+/* ========== 按钮区 ========== */
+.wm-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-12);
+  padding: 20px 24px;
+  flex-shrink: 0;
+}
+
+/* Footer 带分割线 */
+.wm-modal__footer--bordered {
+  border-top: 1px solid var(--fill-main);
+}
+
+/* ========== Success状态的确认按钮 ========== */
+.wm-modal[data-status="success"] .wm-modal__ok-button {
+  background-color: var(--success-1);
+  border-color: var(--success-1);
+}
+
+.wm-modal[data-status="success"] .wm-modal__ok-button:hover:not(.wm-button--disabled) {
+  background-color: var(--success-2);
+  border-color: var(--success-2);
+}
+
+.wm-modal[data-status="success"] .wm-modal__ok-button:active:not(.wm-button--disabled) {
+  background-color: var(--success-3);
+  border-color: var(--success-3);
+}
+
+/* ========== Warning状态的确认按钮 ========== */
+.wm-modal[data-status="warning"] .wm-modal__ok-button {
+  background-color: var(--warning-1);
+  border-color: var(--warning-1);
+}
+
+.wm-modal[data-status="warning"] .wm-modal__ok-button:hover:not(.wm-button--disabled) {
+  background-color: var(--warning-2);
+  border-color: var(--warning-2);
+}
+
+.wm-modal[data-status="warning"] .wm-modal__ok-button:active:not(.wm-button--disabled) {
+  background-color: var(--warning-3);
+  border-color: var(--warning-3);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .wm-modal[data-size="small"],
+  .wm-modal[data-size="default"],
+  .wm-modal[data-size="large"] {
+    width: calc(100vw - 32px);
+    max-width: 520px;
+  }
+}
+
+/* ========== 无标题样式 ========== */
+.wm-modal:not(:has(.wm-modal__header)) .wm-modal__body {
+  padding-top: var(--spacing-24);
+}
+
+/* ========== 无底部样式 ========== */
+.wm-modal:not(:has(.wm-modal__footer)) .wm-modal__body {
+  padding-bottom: var(--spacing-24);
+}

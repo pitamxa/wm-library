@@ -1,0 +1,189 @@
+/**
+ * Tooltip Component Styles
+ * Using BEM naming convention and Design Tokens
+ */
+
+/* ========== Popover/Tooltip Component Variables ========== */
+:root {
+  /* The background color for dropdowns and tooltips. */
+  --popover: var(--white);
+  /* The default color for text or elements that appear on top of dropdowns and tooltips. */
+  --popover-foreground: var(--text-main);
+}
+
+/* ========== Tooltip Wrapper ========== */
+.wm-tooltip-wrapper {
+  display: inline-block;
+}
+
+/* ========== Tooltip Base Styles ========== */
+.wm-tooltip {
+  position: absolute;
+  max-width: 300px;
+  background-color: var(--text-secondary);
+  color: var(--white);
+  border-radius: var(--radius-4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  word-wrap: break-word;
+  word-break: break-word;
+  animation: wm-tooltip-fade-in 150ms ease-out;
+  z-index: 1000;
+}
+
+/* ========== Tooltip Content ========== */
+.wm-tooltip__content {
+  padding: 8px 12px;
+}
+
+/* ========== Tooltip Size Variants ========== */
+.wm-tooltip--sm .wm-tooltip__content {
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.wm-tooltip--default .wm-tooltip__content {
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.wm-tooltip--lg .wm-tooltip__content {
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* ========== Tooltip Arrow ========== */
+.wm-tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Arrow size variants */
+.wm-tooltip--sm .wm-tooltip__arrow {
+  border-width: 4px;
+}
+
+.wm-tooltip--default .wm-tooltip__arrow {
+  border-width: 5px;
+}
+
+.wm-tooltip--lg .wm-tooltip__arrow {
+  border-width: 6px;
+}
+
+/* ========== Tooltip Placements ========== */
+/* Top placement */
+.wm-tooltip--top .wm-tooltip__arrow {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  border-color: var(--text-secondary) transparent transparent transparent;
+}
+
+.wm-tooltip--top.wm-tooltip--sm .wm-tooltip__arrow {
+  bottom: 0;
+  transform: translate(-50%, 100%);
+}
+
+.wm-tooltip--top.wm-tooltip--lg .wm-tooltip__arrow {
+  bottom: 0;
+  transform: translate(-50%, 100%);
+}
+
+/* Bottom placement */
+.wm-tooltip--bottom .wm-tooltip__arrow {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border-color: transparent transparent var(--text-secondary) transparent;
+}
+
+.wm-tooltip--bottom.wm-tooltip--sm .wm-tooltip__arrow {
+  top: 0;
+  transform: translate(-50%, -100%);
+}
+
+.wm-tooltip--bottom.wm-tooltip--lg .wm-tooltip__arrow {
+  top: 0;
+  transform: translate(-50%, -100%);
+}
+
+/* Left placement */
+.wm-tooltip--left .wm-tooltip__arrow {
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  border-color: transparent transparent transparent var(--text-secondary);
+}
+
+.wm-tooltip--left.wm-tooltip--sm .wm-tooltip__arrow {
+  right: 0;
+  transform: translate(100%, -50%);
+}
+
+.wm-tooltip--left.wm-tooltip--lg .wm-tooltip__arrow {
+  right: 0;
+  transform: translate(100%, -50%);
+}
+
+/* Right placement */
+.wm-tooltip--right .wm-tooltip__arrow {
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  border-color: transparent var(--text-secondary) transparent transparent;
+}
+
+.wm-tooltip--right.wm-tooltip--sm .wm-tooltip__arrow {
+  left: 0;
+  transform: translate(-100%, -50%);
+}
+
+.wm-tooltip--right.wm-tooltip--lg .wm-tooltip__arrow {
+  left: 0;
+  transform: translate(-100%, -50%);
+}
+
+/* ========== Animations ========== */
+@keyframes wm-tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========== Accessibility ========== */
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .wm-tooltip {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .wm-tooltip {
+    border: 2px solid var(--white);
+  }
+}
+
+/* ========== Responsive adjustments ========== */
+@media (max-width: 768px) {
+  .wm-tooltip {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-tooltip {
+    max-width: 200px;
+  }
+}

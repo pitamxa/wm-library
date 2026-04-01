@@ -1,0 +1,308 @@
+/**
+ * WM Card Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== Card Component Variables ========== */
+:root {
+  /* The background color for cards, modals, and other containers. */
+  --card: var(--white);
+  /* The default color for text or elements that appear on top of cards. */
+  --card-foreground: var(--text-main);
+  /* The border radius for card elements. */
+  --radius-card: var(--radius-8);
+  /* Shadow for small elevations, such as cards or modals. */
+  --elevation-sm: 0px 6px 30px 5px rgba(0,0,0,0.05), 0px 16px 24px 2px rgba(0,0,0,0.04), 0px 8px 10px -5px rgba(0,0,0,0.08);
+}
+
+/* ========== Card 容器 ========== */
+.wm-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+  position: relative;
+}
+
+/* ========== Card 变体 ========== */
+.wm-card--default {
+  border: 1px solid var(--border-secondary);
+}
+
+.wm-card--bordered {
+  border: 1px solid var(--border-secondary);
+}
+
+.wm-card--elevated {
+  border: 1px solid var(--border-secondary);
+  box-shadow: var(--elevation-sm);
+}
+
+/* ========== Card 尺寸 ========== */
+/* 尺寸主要影响内边距，具体样式在各部分定义 */
+
+/* ========== Card 交互状态 ========== */
+.wm-card--hoverable:hover:not(.wm-card--disabled):not(.wm-card--loading) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-card--hoverable.wm-card--elevated:hover:not(.wm-card--disabled):not(.wm-card--loading) {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.wm-card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.wm-card--clickable:active:not(.wm-card--disabled):not(.wm-card--loading) {
+  transform: translateY(1px);
+}
+
+.wm-card--clickable:focus {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-card--clickable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ========== Card 验证状态 ========== */
+.wm-card--error {
+  border-color: var(--error-1);
+}
+
+.wm-card--success {
+  border-color: var(--success-1);
+}
+
+/* ========== Card 禁用状态 ========== */
+.wm-card--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-quaternary);
+  color: var(--text-disabled);
+  border-color: var(--border-secondary);
+}
+
+.wm-card--disabled * {
+  pointer-events: none;
+}
+
+/* 禁用状态：所有文本统一使用禁用色 */
+.wm-card--disabled .wm-card__title,
+.wm-card--disabled .wm-card__description,
+.wm-card--disabled .wm-card__body,
+.wm-card--disabled .wm-card__extra,
+.wm-card--disabled .wm-card__footer {
+  color: var(--text-disabled);
+}
+
+/* 禁用状态：footer 背景也使用禁用背景色 */
+.wm-card--disabled .wm-card__footer {
+  background-color: var(--fill-quaternary);
+  border-top-color: var(--border-secondary);
+}
+
+/* ========== Card Header ========== */
+.wm-card__header {
+  padding: var(--spacing-16) var(--spacing-20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wm-card__header--sm {
+  padding: var(--spacing-12) var(--spacing-16);
+  min-height: var(--spacing-48);
+}
+
+.wm-card__header--default {
+  padding: var(--spacing-16) var(--spacing-20);
+  min-height: calc(var(--spacing-48) + var(--spacing-8));
+}
+
+.wm-card__header--lg {
+  padding: var(--spacing-20) var(--spacing-24);
+  min-height: calc(var(--spacing-48) + var(--spacing-16));
+}
+
+/* ========== Card Title ========== */
+.wm-card__title {
+  color: var(--card-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.wm-card__header--sm .wm-card__title {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-card__header--default .wm-card__title {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-card__header--lg .wm-card__title {
+  font-size: var(--fontsize-18);
+  line-height: var(--lineheight-26);
+}
+
+/* ========== Card Description ========== */
+.wm-card__description {
+  color: var(--text-tertiary);
+  margin-top: var(--spacing-2);
+  font-weight: 400;
+}
+
+.wm-card__header--sm .wm-card__description {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-card__header--default .wm-card__description {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-card__header--lg .wm-card__description {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ========== Card Header Content Wrapper ========== */
+.wm-card__header-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========== Card Extra ========== */
+.wm-card__extra {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-left: var(--spacing-16);
+  flex-shrink: 0;
+}
+
+/* ========== Card Body ========== */
+.wm-card__body {
+  flex: 1;
+  color: var(--text-tertiary);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  position: relative;
+}
+
+.wm-card__body--sm {
+  padding: var(--spacing-12) var(--spacing-16) var(--spacing-24) var(--spacing-16);
+}
+
+.wm-card__body--default {
+  padding: var(--spacing-16) var(--spacing-20) var(--spacing-32) var(--spacing-20);
+}
+
+.wm-card__body--lg {
+  padding: var(--spacing-20) var(--spacing-24) var(--spacing-40) var(--spacing-24);
+}
+
+.wm-card__body--loading {
+  min-height: calc(var(--spacing-48) * 2 + var(--spacing-24));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== Card Loading ========== */
+.wm-card__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-12);
+  color: var(--text-tertiary);
+}
+
+.wm-card__loading-icon {
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+  animation: spin 1s linear infinite;
+}
+
+.wm-card__loading-text {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ========== Card Footer ========== */
+.wm-card__footer {
+  border-top: 1px solid var(--border-secondary);
+  background-color: var(--fill-quaternary);
+  color: var(--text-secondary);
+}
+
+.wm-card__footer--sm {
+  padding: var(--spacing-12) var(--spacing-16);
+  min-height: calc(var(--spacing-40) + var(--spacing-4));
+}
+
+.wm-card__footer--default {
+  padding: var(--spacing-16) var(--spacing-20);
+  min-height: calc(var(--spacing-48) + var(--spacing-4));
+}
+
+.wm-card__footer--lg {
+  padding: var(--spacing-20) var(--spacing-24);
+  min-height: calc(var(--spacing-48) + var(--spacing-12));
+}
+
+/* ========== Transparent Footer Variant ========== */
+.wm-card__footer--transparent {
+  background-color: transparent;
+  border-top: none;
+}
+
+/* ========== 动画 ========== */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== 无障碍支持 ========== */
+.wm-card--clickable:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .wm-card {
+    border-width: 2px;
+  }
+  
+  .wm-card--bordered {
+    border-width: 3px;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-card,
+  .wm-card__loading-icon {
+    transition: none;
+    animation: none;
+  }
+}

@@ -1,0 +1,276 @@
+/**
+ * WM Collapse Component Styles
+ * \u4F7F\u7528 BEM \u547D\u540D\u89C4\u8303\u548C Design Tokens
+ */
+
+/* ========== Collapse \u5BB9\u5668 ========== */
+.wm-collapse {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font-family-base);
+}
+
+/* ========== Collapse \u53D8\u4F53 ========== */
+.wm-collapse--default {
+  border: 1px solid var(--neutral-6);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+}
+
+.wm-collapse--bordered {
+  border: 1px solid var(--neutral-6);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+}
+
+.wm-collapse--ghost {
+  border: none;
+  background-color: transparent;
+}
+
+/* ========== Collapse Item ========== */
+.wm-collapse__item {
+  border-bottom: 1px solid var(--neutral-6);
+}
+
+.wm-collapse__item:last-child {
+  border-bottom: none;
+}
+
+.wm-collapse--ghost .wm-collapse__item {
+  border-bottom: none;
+  margin-bottom: var(--spacing-4);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+}
+
+.wm-collapse--ghost .wm-collapse__item:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Collapse Item 禁用状态 ========== */
+.wm-collapse__item--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.wm-collapse__item--disabled .wm-collapse__trigger {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========== Collapse Trigger ========== */
+.wm-collapse__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-16);
+  background-color: var(--fill-quaternary);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 200ms, color 200ms;
+  gap: var(--spacing-8);
+  text-align: left;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: var(--text-main);
+}
+
+.wm-collapse__trigger:hover:not(:disabled) {
+  background-color: var(--fill-tertiary);
+}
+
+.wm-collapse__trigger:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* Ghost \u53D8\u4F53\u7684 Trigger \u6837\u5F0F */
+.wm-collapse--ghost .wm-collapse__trigger {
+  background-color: var(--fill-tertiary);
+  border-radius: var(--radius-8);
+}
+
+.wm-collapse--ghost .wm-collapse__trigger:hover:not(:disabled) {
+  background-color: var(--fill-secondary);
+}
+
+/* ========== Collapse Trigger \u5C3A\u5BF8 ========== */
+.wm-collapse__trigger--sm {
+  padding: var(--spacing-8) var(--spacing-12);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.wm-collapse__trigger--default {
+  padding: var(--spacing-12) var(--spacing-16);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.wm-collapse__trigger--lg {
+  padding: var(--spacing-16) var(--spacing-20);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* ========== Trigger \u5DE6\u4FA7\u5185\u5BB9 ========== */
+.wm-collapse__trigger-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex: 1;
+  overflow: hidden;
+}
+
+.wm-collapse__trigger-icon {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+}
+
+.wm-collapse__trigger-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wm-collapse__trigger--sm .wm-collapse__trigger-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.wm-collapse__trigger--lg .wm-collapse__trigger-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wm-collapse__trigger-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========== Trigger Extra \u533A\u57DF ========== */
+.wm-collapse__trigger-extra {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+/* ========== Collapse Arrow ========== */
+.wm-collapse__arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  transition: transform 200ms ease;
+}
+
+.wm-collapse__arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wm-collapse__trigger--sm .wm-collapse__arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.wm-collapse__trigger--lg .wm-collapse__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wm-collapse__arrow--expanded {
+  transform: rotate(180deg);
+}
+
+/* Arrow \u5728\u5DE6\u4FA7 */
+.wm-collapse__trigger--arrow-left {
+  flex-direction: row-reverse;
+}
+
+.wm-collapse__trigger--arrow-left .wm-collapse__arrow {
+  transform: rotate(-90deg);
+}
+
+.wm-collapse__trigger--arrow-left .wm-collapse__arrow--expanded {
+  transform: rotate(0deg);
+}
+
+/* ========== Collapse Content ========== */
+.wm-collapse__content {
+  overflow: hidden;
+  transition: height 200ms ease;
+}
+
+.wm-collapse__content-inner {
+  padding: var(--spacing-12) var(--spacing-16);
+  color: var(--text-secondary);
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  background-color: var(--white);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ghost \u53D8\u4F53\u7684 Content \u6837\u5F0F */
+.wm-collapse--ghost .wm-collapse__content-inner {
+  padding: var(--spacing-8) var(--spacing-16);
+  background-color: transparent;
+}
+
+/* ========== Content \u5C3A\u5BF8 ========== */
+.wm-collapse__content-inner--sm {
+  padding: var(--spacing-8) var(--spacing-12);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.wm-collapse__content-inner--default {
+  padding: var(--spacing-12) var(--spacing-16);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.wm-collapse__content-inner--lg {
+  padding: var(--spacing-16) var(--spacing-20);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* ========== \u65E0\u969C\u788D\u652F\u6301 ========== */
+@media (prefers-reduced-motion: reduce) {
+  .wm-collapse__arrow,
+  .wm-collapse__content,
+  .wm-collapse__trigger {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .wm-collapse--default,
+  .wm-collapse--bordered {
+    border-width: 2px;
+  }
+
+  .wm-collapse__item {
+    border-bottom-width: 2px;
+  }
+}

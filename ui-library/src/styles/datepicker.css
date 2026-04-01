@@ -1,0 +1,872 @@
+/**
+ * DatePicker Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== DatePicker 容器 ========== */
+.wm-datepicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+/* ========== 标签 ========== */
+.wm-datepicker__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+}
+
+.wm-datepicker__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== 触发器（单日期 / datetime） ========== */
+.wm-datepicker__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: var(--radius-4);
+  transition: border-color 200ms, background-color 200ms;
+  cursor: pointer;
+  outline: none;
+}
+
+/* 触发器尺寸 */
+.wm-datepicker__trigger--sm {
+  padding: var(--spacing-6) var(--spacing-8);
+  height: var(--spacing-32);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-20);
+}
+
+/* ========== 触发器状态 ========== */
+.wm-datepicker__trigger:hover:not(.wm-datepicker__trigger--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-datepicker__trigger:focus,
+.wm-datepicker__trigger[data-state="open"] {
+  border-color: var(--primary-1-default);
+}
+
+.wm-datepicker__trigger--open {
+  border-color: var(--primary-1-default);
+}
+
+.wm-datepicker__trigger--error {
+  border-color: var(--error-1);
+}
+
+.wm-datepicker__trigger--error:hover:not(.wm-datepicker__trigger--disabled) {
+  border-color: var(--error-2);
+}
+
+.wm-datepicker__trigger--error:focus {
+  border-color: var(--error-1);
+}
+
+.wm-datepicker__trigger--success {
+  border-color: var(--success-1);
+}
+
+.wm-datepicker__trigger--success:hover:not(.wm-datepicker__trigger--disabled) {
+  border-color: var(--success-2);
+}
+
+.wm-datepicker__trigger--success:focus {
+  border-color: var(--success-1);
+}
+
+.wm-datepicker__trigger--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  color: var(--text-placeholder);
+}
+
+/* disabled 时触发器内图标统一用 disabled 色 */
+.wm-datepicker__trigger--disabled .wm-datepicker__icon-btn,
+.wm-datepicker__trigger--disabled .wm-datepicker__trigger-value {
+  color: var(--text-placeholder);
+}
+
+/* ========== 触发器内容 ========== */
+.wm-datepicker__trigger-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-datepicker__trigger-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-main);
+}
+
+.wm-datepicker__trigger:not(.wm-datepicker__trigger--filled) .wm-datepicker__trigger-value {
+  color: var(--text-quaternary);
+}
+
+.wm-datepicker__trigger-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-left: var(--spacing-8);
+}
+
+/* ========== 图标 ========== */
+.wm-datepicker__icon {
+  flex-shrink: 0;
+}
+
+.wm-datepicker__icon--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-datepicker__icon--calendar {
+  color: var(--text-placeholder);
+}
+
+.wm-datepicker__icon--loading {
+  color: var(--text-tertiary);
+  animation: spin 1s linear infinite;
+}
+
+.wm-datepicker__icon--error {
+  color: var(--error-1);
+}
+
+.wm-datepicker__icon--success {
+  color: var(--success-1);
+}
+
+/* ========== 清除按钮 ========== */
+.wm-datepicker__clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  border-radius: 50%;
+  background-color: var(--border-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.wm-datepicker__clear-btn:hover {
+  background-color: var(--text-tertiary);
+}
+
+.wm-datepicker__clear-btn:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-datepicker__clear-icon {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+  color: var(--white);
+}
+
+/* ========== 下拉内容（共用） ========== */
+.wm-datepicker__content {
+  padding: 0 !important;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-radius: 0 !important;
+  z-index: 1100;
+  width: auto;
+  max-height: none;
+}
+
+/* datetime 弹窗允许宽度自适应 */
+.wm-datepicker__content--datetime {
+  width: fit-content !important;
+  max-width: none;
+}
+
+/* ========== 覆盖 Calendar 组件样式 ========== */
+.wm-datepicker__content .rdp {
+  --rdp-cell-size: 36px;
+  --rdp-accent-color: var(--primary-1-default);
+  --rdp-background-color: var(--primary-7-bg);
+  margin: 0;
+}
+
+.wm-datepicker__content .rdp-months {
+  padding: var(--spacing-12);
+}
+
+.wm-datepicker__content .rdp-month {
+  gap: var(--spacing-12);
+}
+
+.wm-datepicker__content .rdp-caption {
+  margin-bottom: 0;
+}
+
+.wm-datepicker__content .rdp-caption_label {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-main);
+}
+
+.wm-datepicker__content .rdp-nav_button {
+  width: var(--spacing-28);
+  height: var(--spacing-28);
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: 0;
+  transition: all 150ms;
+}
+
+.wm-datepicker__content .rdp-nav_button[disabled] {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.wm-datepicker__content .rdp-nav_button:hover:not([disabled]) {
+  background-color: var(--fill-quaternary);
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-datepicker__content .rdp-nav_button svg {
+  color: var(--text-main);
+  transition: color 150ms;
+}
+
+.wm-datepicker__content .rdp-nav_button:hover:not([disabled]) svg {
+  color: var(--primary-1-default);
+}
+
+.wm-datepicker__content .rdp-head_cell {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+  width: var(--spacing-36);
+}
+
+.wm-datepicker__content .rdp-cell {
+  padding: 0;
+  width: var(--spacing-36);
+  height: var(--spacing-36);
+}
+
+.wm-datepicker__content .rdp-day {
+  width: var(--spacing-36);
+  height: var(--spacing-36);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  border-radius: 0;
+  border: 1px solid transparent;
+  transition: all 150ms;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.wm-datepicker__content .rdp-day:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: var(--primary-7-bg);
+  border-color: var(--primary-5-border);
+  color: var(--primary-2-hover);
+}
+
+.wm-datepicker__content .rdp-day_selected {
+  background-color: var(--primary-1-default) !important;
+  color: var(--white) !important;
+  border-color: var(--primary-1-default);
+}
+
+.wm-datepicker__content .rdp-day_selected:hover {
+  background-color: var(--primary-2-hover) !important;
+  border-color: var(--primary-2-hover);
+}
+
+.wm-datepicker__content .rdp-day_today:not(.rdp-day_selected) {
+  background-color: transparent;
+  color: inherit;
+  border-color: transparent;
+}
+
+.wm-datepicker__content .rdp-day_outside {
+  color: var(--text-placeholder);
+}
+
+.wm-datepicker__content .rdp-day_disabled {
+  color: var(--text-placeholder);
+  cursor: not-allowed;
+}
+
+/* ========== Range 区间高亮（与基础日期弹窗共用外壳） ========== */
+.wm-datepicker__content .rdp-day_range_start,
+.wm-datepicker__content .rdp-day_range_end {
+  background-color: var(--primary-1-default) !important;
+  color: var(--white) !important;
+  border-color: var(--primary-1-default) !important;
+}
+
+.wm-datepicker__content .rdp-day_range_middle {
+  background-color: var(--primary-8-bg) !important;
+  color: var(--primary-1-default) !important;
+  border-color: transparent !important;
+}
+
+.wm-datepicker__content .rdp-day_range_middle:hover {
+  background-color: var(--primary-7-bghover) !important;
+}
+
+/* ========== 辅助文本 ========== */
+.wm-datepicker__helper {
+  margin: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-22);
+  color: var(--text-tertiary);
+}
+
+.wm-datepicker__helper--error {
+  color: var(--error-1);
+}
+
+.wm-datepicker__helper--success {
+  color: var(--success-1);
+}
+
+/* ========== 动画 ========== */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ========== 无障碍支持 ========== */
+.wm-datepicker__trigger:focus-visible {
+  border-color: var(--primary-1-default);
+}
+
+@media (prefers-contrast: high) {
+  .wm-datepicker__trigger {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wm-datepicker__trigger,
+  .wm-datepicker__icon--loading,
+  .wm-datepicker__content .rdp-day {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ========== DateTime 弹窗布局 ========== */
+.wm-datepicker__datetime-popup {
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-datepicker__datetime-body {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.wm-datepicker__datetime-divider {
+  width: 1px;
+  background-color: var(--fill-main);
+  flex-shrink: 0;
+  margin: 0;
+  align-self: stretch;
+}
+
+/* ========== 时间选择器 ========== */
+.wm-datepicker__time-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wm-datepicker__time-picker {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4);
+  width: fit-content;
+  overflow: hidden;
+}
+
+/* 时间标题行：显示当前已选时间，对齐日历月份导航行 */
+.wm-datepicker__time-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--spacing-40);
+  padding: 0 var(--spacing-12);
+  border-bottom: 1px solid var(--fill-main);
+  flex-shrink: 0;
+}
+
+.wm-datepicker__time-header-text {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  color: var(--text-main);
+}
+
+.wm-datepicker__time-cols {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 274px; /* no design token for 274px */
+  overflow: hidden;
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0;
+  gap: var(--spacing-2);
+}
+
+/* 时间列之间的竖向分割线 */
+.wm-datepicker__time-col-divider {
+  width: 1px;
+  height: 100%;
+  background-color: var(--fill-main);
+  flex-shrink: 0;
+  align-self: stretch;
+  margin: 0 var(--spacing-2);
+}
+
+.wm-datepicker__time-col {
+  width: 56px; /* no design token for 56px */
+  flex: none;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.wm-datepicker__time-col::-webkit-scrollbar {
+  display: none;
+}
+
+.wm-datepicker__time-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--spacing-32);
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background-color 120ms, color 120ms;
+  user-select: none;
+  white-space: nowrap;
+  padding: 0 var(--spacing-8);
+}
+
+.wm-datepicker__time-item:hover {
+  background-color: var(--primary-8-bg);
+  color: var(--primary-1-default);
+}
+
+.wm-datepicker__time-item--selected {
+  background-color: var(--primary-8-bg);
+  color: var(--primary-1-default);
+}
+
+.wm-datepicker__time-item--selected:hover {
+  background-color: var(--primary-7-bghover);
+  color: var(--primary-1-default);
+}
+
+.wm-datepicker__time-sep {
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  color: var(--text-tertiary);
+  padding: 0 2px;
+  flex-shrink: 0;
+  align-self: center;
+  line-height: 1;
+}
+
+/* ========== DateTime 底部操作栏 ========== */
+.wm-datepicker__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-12);
+  border-top: 1px solid var(--fill-main);
+}
+
+.wm-datepicker__footer--right {
+  justify-content: flex-end;
+}
+
+.wm-datepicker__footer-preview {
+  font-size: var(--fontsize-12);
+  color: var(--text-tertiary);
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-20);
+  white-space: nowrap;
+}
+
+.wm-datepicker__footer-actions {
+  display: flex;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+.wm-datepicker__footer-btn {
+  padding: 3px var(--spacing-12); /* 3px has no design token */
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  border-radius: var(--radius-4);
+  cursor: pointer;
+  border: 1px solid var(--border-secondary);
+  transition: all 150ms;
+  background: var(--white);
+  color: var(--text-main);
+  line-height: var(--lineheight-22);
+}
+
+.wm-datepicker__footer-btn:hover {
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+.wm-datepicker__footer-btn--primary {
+  background: var(--primary-1-default);
+  border-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+.wm-datepicker__footer-btn--primary:hover:not(:disabled) {
+  background: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+  color: var(--white);
+}
+
+.wm-datepicker__footer-btn--primary:disabled {
+  background: var(--primary-6-disabled);
+  border-color: var(--primary-6-disabled);
+  color: var(--white);
+  cursor: not-allowed;
+}
+
+/* 此刻 / Now 快捷按钮 */
+.wm-datepicker__footer-now-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-22);
+  color: var(--primary-1-default);
+  transition: color 150ms;
+}
+
+.wm-datepicker__footer-now-btn:hover {
+  color: var(--primary-2-hover);
+}
+
+/* ========== Range Trigger：双输入框样式 ========== */
+
+/* 外层 wrapper：无边框透明容器，flex 行排列 */
+.wm-datepicker__trigger--range-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.wm-datepicker__trigger--range-wrapper--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 单个 input 框（开始 / 结束） */
+.wm-datepicker__range-input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: var(--radius-4);
+  transition: border-color 200ms, background-color 200ms;
+  gap: var(--spacing-8);
+}
+
+.wm-datepicker__range-input--sm {
+  padding: var(--spacing-6) var(--spacing-8);
+  height: var(--spacing-32);
+}
+
+/* hover 时只高亮鼠标所在的那个 input，不影响另一个 */
+.wm-datepicker__range-input:hover:not(.wm-datepicker__range-input--disabled):not(.wm-datepicker__range-input--open):not(.wm-datepicker__range-input--error):not(.wm-datepicker__range-input--success) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-datepicker__range-input--error {
+  border-color: var(--error-1);
+}
+
+.wm-datepicker__range-input--success {
+  border-color: var(--success-1);
+}
+
+.wm-datepicker__range-input--disabled {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+/* disabled 时 range input 内图标和分隔符统一用 disabled 色 */
+.wm-datepicker__range-input--disabled .wm-datepicker__range-input-icon,
+.wm-datepicker__trigger--range-wrapper--disabled .wm-datepicker__range-dash,
+.wm-datepicker__trigger--range-wrapper--disabled .wm-datepicker__range-input-text {
+  color: var(--text-placeholder);
+}
+
+/* 激活（打开）状态的 input 框高亮 */
+.wm-datepicker__range-input--open {
+  border-color: var(--primary-1-default);
+}
+
+/* input 内文字 */
+.wm-datepicker__range-input-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-20);
+  color: var(--text-main);
+  text-align: left;
+}
+
+.wm-datepicker__range-input-text--placeholder {
+  color: var(--text-quaternary);
+}
+
+/* input 内图标 */
+.wm-datepicker__range-input-icon {
+  flex-shrink: 0;
+  color: var(--text-placeholder);
+}
+
+/* 中间 "–" 分隔符 */
+.wm-datepicker__range-dash {
+  flex-shrink: 0;
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  color: var(--text-quaternary);
+  line-height: var(--lineheight-20);
+  user-select: none;
+}
+
+/* ========== 可输入触发器内部 input ========== */
+.wm-datepicker__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-20);
+  color: var(--text-main);
+  font-family: inherit;
+  cursor: text;
+}
+
+.wm-datepicker__input::placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-datepicker__input:disabled {
+  cursor: not-allowed;
+  color: var(--text-placeholder);
+}
+
+/* ========== 图标按钮（打开选择器） ========== */
+.wm-datepicker__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-placeholder);
+  flex-shrink: 0;
+  transition: color 150ms;
+}
+
+.wm-datepicker__icon-btn:hover {
+  color: var(--text-tertiary);
+}
+
+/* ========== 可直接输入的文本 input（range 模式内嵌） ========== */
+.wm-datepicker__range-text-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--fontsize-14);
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-20);
+  color: var(--text-main);
+  cursor: text;
+}
+
+.wm-datepicker__range-text-input::placeholder {
+  color: var(--text-quaternary);
+}
+
+.wm-datepicker__range-text-input:disabled {
+  cursor: not-allowed;
+  color: var(--text-placeholder);
+}
+
+/* ========== Week 模式：整行高亮 ========== */
+
+/* 选中周的日期高亮（非 selected 的那个日） */
+.wm-datepicker__content .wm-cal__day--week-range:not(.rdp-day_selected) {
+  background-color: var(--primary-8-bg);
+  color: var(--primary-1-default);
+  border-color: transparent;
+}
+
+.wm-datepicker__content .wm-cal__day--week-range.rdp-day_selected {
+  background-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+/* Week 模式：抑制单个 day 的默认 hover */
+.wm-datepicker__week-mode .wm-cal__day:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--text-main);
+}
+
+/* Week 模式：outside day 的默认 hover 也抑制 */
+.wm-datepicker__week-mode .rdp-day_outside:hover:not([disabled]):not(.rdp-day_selected) {
+  color: var(--text-placeholder);
+}
+
+/* Week 模式：行级悬浮高亮——当鼠标悬浮在某一行时，该行所有 day 显示悬浮态 */
+.wm-datepicker__week-mode .wm-cal__row:hover .wm-cal__day:not([disabled]):not(.rdp-day_selected):not(.wm-cal__day--week-range) {
+  background-color: var(--primary-7-bg);
+  border-color: transparent;
+  color: var(--primary-2-hover);
+}
+
+/* Week 模式：行级悬浮时 outside day 用略浅的主题色 */
+.wm-datepicker__week-mode .wm-cal__row:hover .rdp-day_outside:not([disabled]):not(.rdp-day_selected):not(.wm-cal__day--week-range) {
+  background-color: var(--primary-7-bg);
+  color: var(--primary-5-border);
+}
+
+/* Week 模式：行级悬浮时已选中周的 day 保持原高亮不变 */
+.wm-datepicker__week-mode .wm-cal__row:hover .wm-cal__day--week-range:not(.rdp-day_selected) {
+  background-color: var(--primary-8-bg);
+  color: var(--primary-1-default);
+}
+
+/* ========== Month / Year 面板 ========== */
+.wm-datepicker__panel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-12);
+  width: 280px; /* no design token for 280px */
+}
+
+.wm-datepicker__panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-12);
+  border-bottom: 1px solid var(--fill-main);
+  margin-bottom: var(--spacing-12);
+}
+
+.wm-datepicker__panel-title {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  font-family: var(--font-family-base);
+  color: var(--text-main);
+}
+
+.wm-datepicker__panel-grid {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.wm-datepicker__panel-grid--4x3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.wm-datepicker__panel-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--spacing-36);
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  font-family: var(--font-family-base);
+  color: var(--text-main);
+  transition: background-color 150ms, color 150ms, border-color 150ms;
+}
+
+.wm-datepicker__panel-cell:hover {
+  background-color: var(--primary-7-bg);
+  color: var(--primary-2-hover);
+}
+
+.wm-datepicker__panel-cell--selected {
+  background-color: var(--primary-1-default);
+  color: var(--white);
+  border-color: var(--primary-1-default);
+}
+
+.wm-datepicker__panel-cell--selected:hover {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+  color: var(--white);
+}
+
+.wm-datepicker__panel-cell--outside {
+  color: var(--text-placeholder);
+}
+
+.wm-datepicker__panel-cell--outside:hover {
+  color: var(--primary-2-hover);
+}

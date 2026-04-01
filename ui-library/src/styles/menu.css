@@ -1,0 +1,213 @@
+/**
+ * WM Menu Component Styles
+ * 使用 BEM 命名规范
+ */
+
+/* ========== 基础样式 ========== */
+.wm-menu {
+  background-color: var(--fill-quaternary);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ========== 菜单项 ========== */
+.wm-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42.5px;
+  padding: 0 20px 0 36px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  width: 100%;
+  text-align: left;
+}
+
+.wm-menu-item:hover {
+  background-color: var(--fill-main);
+}
+
+.wm-menu-item:hover .wm-menu-item__text {
+  color: var(--primary-1-default);
+}
+
+.wm-menu-item--active {
+  background-color: var(--fill-main);
+}
+
+.wm-menu-item--selected {
+  background-color: var(--fill-main);
+}
+
+/* ========== 菜单项文字 ========== */
+.wm-menu-item__text {
+  font-size: 15px;
+  line-height: 22.5px;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.wm-menu-item--active .wm-menu-item__text {
+  color: var(--primary-1-default);
+}
+
+.wm-menu-item--selected .wm-menu-item__text {
+  color: var(--primary-1-default);
+}
+
+/* ========== 展开图标 ========== */
+.wm-menu-item__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 200ms;
+}
+
+.wm-menu-item__icon svg {
+  width: 10px;
+  height: 6px;
+}
+
+.wm-menu-item--expanded .wm-menu-item__icon {
+  transform: rotate(180deg);
+}
+
+/* ========== 子菜单容器 ========== */
+.wm-menu-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 300ms ease-in-out;
+}
+
+.wm-menu-submenu--expanded {
+  max-height: 2000px;
+}
+
+/* ========== 二级菜单项 ========== */
+.wm-menu-item--level-2 {
+  padding-left: 56px;
+  padding-right: 12px;
+}
+
+.wm-menu-item--level-2:hover {
+  background-color: transparent;
+}
+
+.wm-menu-item--level-2.wm-menu-item--active {
+  background-color: transparent;
+}
+
+.wm-menu-item--level-2.wm-menu-item--active .wm-menu-item__text {
+  color: var(--primary-1-default);
+}
+
+/* ========== 三级菜单容器 ========== */
+.wm-menu-submenu--level-3 {
+  padding: 10px 8px 0 8px;
+  gap: 2px;
+}
+
+/* ========== 三级菜单项 ========== */
+.wm-menu-item--level-3 {
+  height: 42.5px;
+  padding-left: 84px;
+  padding-right: 20px;
+  border-radius: var(--radius-4);
+}
+
+.wm-menu-item--level-3:hover {
+  background-color: var(--fill-main);
+}
+
+.wm-menu-item--level-3.wm-menu-item--selected {
+  background-color: var(--primary-1-default);
+}
+
+.wm-menu-item--level-3.wm-menu-item--selected .wm-menu-item__text {
+  color: var(--white);
+}
+
+/* ========== 展开/收起图标（二级菜单） ========== */
+.wm-menu-item__expand-icon {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.wm-menu-item__expand-icon svg {
+  width: 6px;
+  height: 7px;
+}
+
+/* ========== 内容区域（文字+图标组合） ========== */
+.wm-menu-item__content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========== 前置图标 ========== */
+.wm-menu-item__icon-prefix {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.wm-menu-item__icon-prefix svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wm-menu-item:hover .wm-menu-item__icon-prefix,
+.wm-menu-item--active .wm-menu-item__icon-prefix,
+.wm-menu-item--selected .wm-menu-item__icon-prefix {
+  color: var(--primary-1-default);
+}
+
+.wm-menu-item--level-3.wm-menu-item--selected .wm-menu-item__icon-prefix {
+  color: var(--white);
+}
+
+/* ========== 禁用状态 ========== */
+.wm-menu-item--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.wm-menu-item--disabled:hover {
+  background-color: transparent;
+}
+
+/* ========== 紧凑模式 ========== */
+.wm-menu--compact .wm-menu-item {
+  height: 36px;
+  padding: 0 16px 0 28px;
+}
+
+.wm-menu--compact .wm-menu-item--level-2 {
+  padding-left: 44px;
+}
+
+.wm-menu--compact .wm-menu-item--level-3 {
+  padding-left: 64px;
+  height: 36px;
+}

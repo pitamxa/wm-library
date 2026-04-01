@@ -1,0 +1,28 @@
+{
+  "name": "wm-ui-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:library": "npm --prefix ../ui-library run build",
+    "dev": "npm run build:library && vite",
+    "dev:lan": "npm run build:library && vite --host 0.0.0.0 --port 3001",
+    "build": "npm run build:library && vite build"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@wm/ui-library": "file:../ui-library",
+    "lucide-react": "^0.487.0",
+    "motion": "^12.23.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.3.5"
+  }
+}

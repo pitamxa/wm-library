@@ -1,0 +1,202 @@
+/**
+ * Theme Variables (v1.1.0)
+ * 语义化主题令牌 — 基于 Guidelines.md v1.1.0 tokens 集合
+ * 所有值通过 var() 引用 base.css 中的原子变量，组件应只引用 theme 变量。
+ *
+ * 架构：base.css（color + number 集合）→ theme.css（tokens 集合语义映射）
+ * Brand 色属于 tokens 集合，在此文件定义：
+ *   - :root 中为默认 WM-T（蓝色）模式
+ *   - .theme-wm-s 中覆盖为 WM-S（绿色）模式
+ */
+@import './base.css';
+
+:root {
+  /* ====================================================================
+   * Brand Colors (tokens 集合 — 默认 WM-T 模式)
+   * ==================================================================== */
+  --brand-100: #315295;   /* Brand/50  */
+  --brand-200: #365AA4;   /* Brand/100 */
+  --brand-300: #5E7BB6;   /* Brand/200 */
+  --brand-400: #728BBF;   /* Brand/300 */
+  --brand-500: #869CC8;   /* Brand/400 */
+  --brand-600: #9AACD1;   /* Brand/500 */
+  --brand-700: #AFBDDB;   /* Brand/600 */
+  --brand-800: #E6EEFF;   /* Brand/700 */
+
+  /* ====================================================================
+   * Primary Colors — tokens → primary/*  →  Brand/*
+   * ==================================================================== */
+  --primary-1-default: var(--brand-200);     /* primary/default      → Brand/200 */
+  --primary-2-hover:   var(--brand-300);     /* primary/hover        → Brand/300 */
+  --primary-3-active:  var(--brand-100);     /* primary/active       → Brand/100 */
+  --primary-4-borderhover: var(--brand-400); /* primary/Strong Border → Brand/400 */
+  --primary-5-border:  var(--brand-500);     /* primary/Muted Border  → Brand/500 */
+  --primary-6-disabled: var(--brand-600);    /* primary/disabled     → Brand/600 */
+  --primary-7-bghover: var(--brand-700);     /* primary/Bg hover     → Brand/700 */
+  --primary-8-bg:      var(--brand-800);     /* primary/Bg           → Brand/800 */
+  /* 向后兼容别名 */
+  --primary-7-bg: var(--primary-8-bg);
+
+  /* ====================================================================
+   * Status - Success — tokens → status/success/*
+   * ==================================================================== */
+  --success-1:    var(--green-100);  /* status/success/text   → green/100 */
+  --success-2:    var(--green-200);  /* status/success/hover  → green/200 */
+  --success-3:    var(--green-300);  /* status/success/border → green/300 */
+  --success-4:    var(--green-400);
+  --success-5:    var(--green-500);
+  --success-6:    var(--green-600);
+  --success-7:    var(--green-700);
+  --success-8-bg: var(--green-800);  /* status/success/bg     → green/800 */
+
+  /* ====================================================================
+   * Status - Error — tokens → status/error/*
+   * ==================================================================== */
+  --error-1:    var(--red-100);  /* status/error/text   → red/100 */
+  --error-2:    var(--red-200);  /* status/error/hover  → red/200 */
+  --error-3:    var(--red-300);  /* status/error/border → red/300 */
+  --error-4:    var(--red-400);
+  --error-5:    var(--red-500);
+  --error-6:    var(--red-600);
+  --error-7:    var(--red-700);
+  --error-8-bg: var(--red-800);  /* status/error/bg     → red/800 */
+
+  /* ====================================================================
+   * Status - Warning — tokens → status/warning/*
+   * ==================================================================== */
+  --warning-1:    var(--orange-100);  /* status/warning/text   → orange/100 */
+  --warning-2:    var(--orange-200);  /* status/warning/hover  → orange/200 */
+  --warning-3:    var(--orange-300);  /* status/warning/border → orange/300 */
+  --warning-4:    var(--orange-400);
+  --warning-5:    var(--orange-500);
+  --warning-6:    var(--orange-600);
+  --warning-7:    var(--orange-700);
+  --warning-8-bg: var(--orange-800);  /* status/warning/bg     → orange/800 */
+
+  /* ====================================================================
+   * Purple Colors — color 集合直通（无 tokens 语义映射）
+   * ==================================================================== */
+  --purple-1: var(--purple-100);
+  --purple-2: var(--purple-200);
+  --purple-3: var(--purple-300);
+  --purple-4: var(--purple-400);
+  --purple-5: var(--purple-500);
+  --purple-6: var(--purple-600);
+  --purple-7: var(--purple-700);
+  --purple-8: var(--purple-800);
+  --purple-9: var(--purple-900);
+
+  /* ====================================================================
+   * Text Colors — tokens → text/*
+   * ==================================================================== */
+  --text-main:        var(--neutral-100);  /* text/primary     → neutral/100 */
+  --text-secondary:   var(--neutral-200);  /* text/secondary   → neutral/200 */
+  --text-tertiary:    var(--neutral-300);  /* text/tertiary    → neutral/300 */
+  --text-placeholder: var(--neutral-400);  /* text/placeholder → neutral/400 */
+  --text-disabled:    var(--neutral-500);  /* text/disabled    → neutral/500 */
+
+  /* 数字别名（兼容旧组件） */
+  --text-1: var(--text-main);
+  --text-2: var(--text-secondary);
+  --text-3: var(--text-tertiary);
+  --text-4: var(--text-placeholder);
+  --text-5: var(--text-disabled);
+  /* 向后兼容 --text-quaternary */
+  --text-quaternary: var(--text-placeholder);
+
+  /* ====================================================================
+   * Fill Colors — tokens → fill/*
+   * ==================================================================== */
+  --fill-main:       var(--neutral-600);  /* fill/main       → neutral/600 */
+  --fill-secondary:  var(--neutral-700);  /* fill/Secondary  → neutral/700 */
+  --fill-tertiary:   var(--neutral-800);  /* fill/Tertiary   → neutral/800 */
+  --fill-quaternary: var(--neutral-900);  /* fill/Quaternary → neutral/900 */
+
+  /* ====================================================================
+   * Border Colors — tokens → Border/*
+   * ==================================================================== */
+  --border-main:      var(--neutral-400);  /* Border/base  → neutral/400 */
+  --border-secondary: var(--neutral-500);  /* Border/split → neutral/500 */
+  --border-focus:     var(--primary-3-active);  /* Border/focus → tokens.primary/active → Brand/50 */
+  --border-error:     var(--red-200);      /* Border/error → red/200     */
+
+  /* ====================================================================
+   * Mask / Shadow — tokens → mask/*, shadow/*
+   * ==================================================================== */
+  --mask-bg:          var(--alpha-100);  /* mask/default     → Alpha/100 */
+  --shadow-main:      var(--alpha-200);  /* shadow/main      → Alpha/200 */
+  --shadow-secondary: var(--alpha-300);  /* shadow/secondary → Alpha/300 */
+
+  /* ====================================================================
+   * Neutral 直通别名（方便组件使用 --neutral-N 系列）
+   * ==================================================================== */
+  --neutral-1: var(--neutral-100);
+  --neutral-2: var(--neutral-200);
+  --neutral-3: var(--neutral-300);
+  --neutral-4: var(--neutral-400);
+  --neutral-5: var(--neutral-500);
+  --neutral-6: var(--neutral-600);
+  --neutral-7: var(--neutral-700);
+  --neutral-8: var(--neutral-800);
+  --neutral-9: var(--neutral-900);
+
+  /* ====================================================================
+   * Base / Utility Colors
+   * ==================================================================== */
+  --white: #FFFFFF;
+  --black: var(--neutral-100);
+  --color-white: #FFFFFF;
+
+  /* ====================================================================
+   * Spacing
+   * ==================================================================== */
+  --spacing-4:  4px;
+  --spacing-8:  8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+
+  /* ====================================================================
+   * Typography
+   * ==================================================================== */
+  --font-family-base: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'SimHei', 'WenQuanYi Micro Hei', 'WenQuanYi Zen Hei', 'Droid Sans Fallback', 'Inter', sans-serif;
+  /* 向后兼容短别名（app.css 中引用了 --font-family） */
+  --font-family: var(--font-family-base);
+
+  /* ====================================================================
+   * Radius Overrides — 暂时全部归零（需要恢复时删除此段即可）
+   * ==================================================================== */
+  --radius-2:  0px;
+  --radius-3:  0px;
+  --radius-4:  0px;
+  --radius-6:  0px;
+  --radius-8:  0px;
+  --radius-12: 0px;
+  --radius-16: 0px;
+
+  /* ====================================================================
+   * Component-Level Radius Exceptions — 覆盖上方归零，单独恢复各组件圆角
+   * ==================================================================== */
+  /* Modal 使用 4px 圆角（对应 base.css 中的 --radius-4 设计 token） */
+  --radius-dialog: 4px;
+  /* Popover 使用 4px 圆角（对应 base.css 中的 --radius-4 设计 token） */
+  --radius-popover: 4px;
+}
+
+/* ======================================================================
+ * WM-S 主题模式（绿色品）
+ * 在 <html> 或容器元素上添加 class="theme-wm-s" 即可切换
+ * ====================================================================== */
+.theme-wm-s {
+  --brand-100: #37A136;
+  --brand-200: #4FAD4E;
+  --brand-300: #72BD71;
+  --brand-400: #A7D6A6;
+  --brand-500: #B9DEB8;
+  --brand-600: #CAE6CA;
+  --brand-700: #EDF7ED;
+  --brand-800: #F6FBF6;
+}

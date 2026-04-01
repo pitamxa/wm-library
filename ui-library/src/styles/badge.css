@@ -1,0 +1,166 @@
+/**
+ * WM Badge 徽标数组件样式
+ * BEM 命名规范，所有值引用 CSS 变量
+ */
+
+/* ================================================================
+ * 包裹容器
+ * ================================================================ */
+.wm-badge {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* ================================================================
+ * 数字徽标
+ * ================================================================ */
+.wm-badge__count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--spacing-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--error-2);
+  color: var(--white);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-12);
+  line-height: 1;
+  border-radius: 10px;
+  border: 1.5px solid var(--white);
+  box-sizing: border-box;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  transform-origin: center;
+  animation: wm-badge-pop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 自定义颜色（通过 CSS 变量 --badge-color 覆盖） */
+.wm-badge__count--custom {
+  background-color: var(--badge-color, var(--error-2));
+}
+
+/* ================================================================
+ * 圆点徽标
+ * ================================================================ */
+.wm-badge__dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--error-2);
+  border: 1.5px solid var(--white);
+  z-index: 10;
+  pointer-events: none;
+  animation: wm-badge-pop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wm-badge__dot--custom {
+  background-color: var(--badge-color, var(--error-2));
+}
+
+/* ================================================================
+ * 弹出动画
+ * ================================================================ */
+@keyframes wm-badge-pop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ================================================================
+ * 无子元素时（独立徽标，非叠加模式）
+ * ================================================================ */
+.wm-badge--standalone .wm-badge__count {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  animation: none;
+}
+
+.wm-badge--standalone .wm-badge__dot {
+  position: static;
+  border: none;
+  animation: none;
+}
+
+/* ================================================================
+ * 交互区域 — 计数控制栏
+ * ================================================================ */
+.wm-badge-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-6);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.wm-badge-controls__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-16);
+  line-height: 1;
+  transition: background-color 120ms, color 120ms;
+  padding: 0;
+}
+
+.wm-badge-controls__btn:hover:not(:disabled) {
+  background-color: var(--primary-8-bg);
+  color: var(--primary-1-default);
+}
+
+.wm-badge-controls__btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.wm-badge-controls__sep {
+  width: 1px;
+  height: 20px;
+  background: var(--border-secondary);
+  flex-shrink: 0;
+}
+
+/* ================================================================
+ * 圆点颜色选择器
+ * ================================================================ */
+.wm-badge-color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 120ms, transform 120ms;
+  flex-shrink: 0;
+  padding: 0;
+  background-clip: padding-box;
+}
+
+.wm-badge-color-swatch:hover {
+  transform: scale(1.15);
+}
+
+.wm-badge-color-swatch--active {
+  border-color: var(--primary-1-default);
+  outline: 2px solid var(--primary-8-bg);
+  outline-offset: 1px;
+}

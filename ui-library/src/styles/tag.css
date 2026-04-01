@@ -1,0 +1,413 @@
+/**
+ * PimaTag Component Styles
+ * 标签组件样式 - 使用 BEM 命名规范
+ */
+
+/* ========== Tag 基础样式 ========== */
+.wm-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-4);
+  transition: all 150ms;
+  user-select: none;
+  white-space: nowrap;
+  font-family: inherit;
+  box-sizing: border-box;
+  max-width: fit-content;
+  width: auto;
+}
+
+/* ========== 尺寸变体 ========== */
+.wm-tag--sm {
+  height: var(--spacing-20);
+  padding: 0 var(--spacing-6);
+  font-size: 10px;       /* no design token for 10px */
+  line-height: 18px;     /* no design token for 18px */
+}
+
+.wm-tag--sm .wm-tag__icon {
+  width: var(--spacing-12);
+  height: var(--spacing-12);
+}
+
+.wm-tag--sm .wm-tag__close-icon {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+}
+
+.wm-tag--default {
+  height: var(--spacing-24);
+  padding: 0 var(--spacing-8);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-22);
+}
+
+.wm-tag--default .wm-tag__icon {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-tag--default .wm-tag__close-icon {
+  width: var(--spacing-12);
+  height: var(--spacing-12);
+}
+
+.wm-tag--lg {
+  height: var(--spacing-32);
+  padding: 0 var(--spacing-12);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-30);
+}
+
+.wm-tag--lg .wm-tag__icon {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.wm-tag--lg .wm-tag__close-icon {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+/* ========== 图标样式 ========== */
+.wm-tag__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-tag__text {
+  display: inline-flex;
+  align-items: center;
+  line-height: inherit;
+}
+
+/* ========== 关闭按钮 ========== */
+.wm-tag__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  outline: none;
+  transition: color 150ms;
+  color: currentColor;
+}
+
+.wm-tag__close:hover:not(:disabled) {
+  color: currentColor;
+}
+
+.wm-tag__close:disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.wm-tag__close-icon {
+  display: block;
+}
+
+/* ========== Filled 样式 - Primary ========== */
+.wm-tag--primary.wm-tag--filled {
+  background-color: var(--primary-1-default);
+  border-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+.wm-tag--primary.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+}
+
+.wm-tag--primary.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--primary-3-active);
+  border-color: var(--primary-3-active);
+}
+
+/* ========== Outlined 样式 - Primary ========== */
+.wm-tag--primary.wm-tag--outlined {
+  background-color: var(--primary-7-bg);
+  border-color: var(--primary-5-border);
+  color: var(--primary-1-default);
+}
+
+.wm-tag--primary.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-tag--primary.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--primary-1-default);
+}
+
+/* ========== Light 样式 - Primary ========== */
+.wm-tag--primary.wm-tag--light {
+  background-color: var(--primary-7-bg);
+  border-color: transparent;
+  color: var(--primary-1-default);
+}
+
+.wm-tag--primary.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--primary-6-bghover);
+}
+
+/* ========== Filled 样式 - Secondary ========== */
+.wm-tag--secondary.wm-tag--filled {
+  background-color: var(--fill-main);
+  border-color: var(--fill-main);
+  color: var(--text-main);
+}
+
+.wm-tag--secondary.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--fill-secondary);
+  border-color: var(--fill-secondary);
+}
+
+.wm-tag--secondary.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--fill-tertiary);
+  border-color: var(--fill-tertiary);
+}
+
+/* ========== Outlined 样式 - Secondary ========== */
+.wm-tag--secondary.wm-tag--outlined {
+  background-color: var(--white);
+  border-color: var(--border-main);
+  color: var(--text-main);
+}
+
+.wm-tag--secondary.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--text-secondary);
+}
+
+.wm-tag--secondary.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--text-main);
+}
+
+/* ========== Light 样式 - Secondary ========== */
+.wm-tag--secondary.wm-tag--light {
+  background-color: var(--white);
+  border-color: transparent;
+  color: var(--text-main);
+}
+
+.wm-tag--secondary.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--fill-tertiary);
+}
+
+/* ========== Filled 样式 - Success ========== */
+.wm-tag--success.wm-tag--filled {
+  background-color: var(--success-1);
+  border-color: var(--success-1);
+  color: var(--white);
+}
+
+.wm-tag--success.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--success-2);
+  border-color: var(--success-2);
+}
+
+.wm-tag--success.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--success-3);
+  border-color: var(--success-3);
+}
+
+/* ========== Outlined 样式 - Success ========== */
+.wm-tag--success.wm-tag--outlined {
+  background-color: var(--success-7);
+  border-color: var(--success-5);
+  color: var(--success-1);
+}
+
+.wm-tag--success.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--success-4);
+}
+
+.wm-tag--success.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--success-1);
+}
+
+/* ========== Light 样式 - Success ========== */
+.wm-tag--success.wm-tag--light {
+  background-color: var(--success-7);
+  border-color: transparent;
+  color: var(--success-1);
+}
+
+.wm-tag--success.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--success-6);
+}
+
+/* ========== Filled 样式 - Warning ========== */
+.wm-tag--warning.wm-tag--filled {
+  background-color: var(--warning-1);
+  border-color: var(--warning-1);
+  color: var(--white);
+}
+
+.wm-tag--warning.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--warning-2);
+  border-color: var(--warning-2);
+}
+
+.wm-tag--warning.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--warning-3);
+  border-color: var(--warning-3);
+}
+
+/* ========== Outlined 样式 - Warning ========== */
+.wm-tag--warning.wm-tag--outlined {
+  background-color: var(--warning-7);
+  border-color: var(--warning-5);
+  color: var(--warning-1);
+}
+
+.wm-tag--warning.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--warning-4);
+}
+
+.wm-tag--warning.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--warning-1);
+}
+
+/* ========== Light 样式 - Warning ========== */
+.wm-tag--warning.wm-tag--light {
+  background-color: var(--warning-7);
+  border-color: transparent;
+  color: var(--warning-1);
+}
+
+.wm-tag--warning.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--warning-6);
+}
+
+/* ========== Filled 样式 - Error ========== */
+.wm-tag--error.wm-tag--filled {
+  background-color: var(--error-1);
+  border-color: var(--error-1);
+  color: var(--white);
+}
+
+.wm-tag--error.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--error-2);
+  border-color: var(--error-2);
+}
+
+.wm-tag--error.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--error-3);
+  border-color: var(--error-3);
+}
+
+/* ========== Outlined 样式 - Error ========== */
+.wm-tag--error.wm-tag--outlined {
+  background-color: var(--error-7);
+  border-color: var(--error-5);
+  color: var(--error-1);
+}
+
+.wm-tag--error.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--error-4);
+}
+
+.wm-tag--error.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--error-1);
+}
+
+/* ========== Light 样式 - Error ========== */
+.wm-tag--error.wm-tag--light {
+  background-color: var(--error-7);
+  border-color: transparent;
+  color: var(--error-1);
+}
+
+.wm-tag--error.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--error-6);
+}
+
+/* ========== Filled 样式 - Info ========== */
+.wm-tag--info.wm-tag--filled {
+  background-color: var(--primary-1-default);
+  border-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+.wm-tag--info.wm-tag--filled:hover:not(.wm-tag--disabled) {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+}
+
+.wm-tag--info.wm-tag--filled.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--primary-3-active);
+  border-color: var(--primary-3-active);
+}
+
+/* ========== Outlined 样式 - Info ========== */
+.wm-tag--info.wm-tag--outlined {
+  background-color: var(--primary-7-bg);
+  border-color: var(--primary-5-border);
+  color: var(--primary-1-default);
+}
+
+.wm-tag--info.wm-tag--outlined:hover:not(.wm-tag--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-tag--info.wm-tag--outlined.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  border-color: var(--primary-1-default);
+}
+
+/* ========== Light 样式 - Info ========== */
+.wm-tag--info.wm-tag--light {
+  background-color: var(--primary-7-bg);
+  border-color: transparent;
+  color: var(--primary-1-default);
+}
+
+.wm-tag--info.wm-tag--light.wm-tag--clickable:active:not(.wm-tag--disabled) {
+  background-color: var(--primary-6-bghover);
+}
+
+/* ========== 可点击状态 ========== */
+.wm-tag--clickable {
+  cursor: pointer;
+}
+
+.wm-tag--clickable:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+/* ========== 禁用状态 ========== */
+.wm-tag--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--fill-secondary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-disabled) !important;
+}
+
+/* ========== 响应式调整 ========== */
+@media (max-width: 768px) {
+  .wm-tag--lg {
+    height: var(--spacing-28);
+    padding: 0 var(--spacing-10);
+    font-size: var(--fontsize-14);
+  }
+
+  .wm-tag--default {
+    height: var(--spacing-22);
+    padding: 0 7px;  /* no design token for 7px */
+    font-size: var(--fontsize-12);
+  }
+
+  .wm-tag--sm {
+    height: var(--spacing-18);
+    padding: 0 5px;  /* no design token for 5px */
+    font-size: 11px; /* no design token for 11px */
+  }
+}

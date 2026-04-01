@@ -1,0 +1,481 @@
+/**
+ * Table Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ */
+
+/* ========== 容器 ========== */
+.wm-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: none;
+  border-radius: var(--radius-12);
+  background-color: var(--white);
+}
+
+.wm-table-container--bordered {
+  border: 1px solid var(--table-border);
+}
+
+/* 有固定列时，容器不裁剪内容，由 scroll-wrapper 负责滚动 */
+.wm-table-container--has-fixed {
+  overflow: visible;
+}
+
+.wm-table-container--has-fixed .wm-table__scroll-wrapper {
+  border-radius: var(--radius-12);
+}
+
+/* ========== 表格基础 ========== */
+.wm-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+.wm-table--fixed {
+  table-layout: fixed;
+}
+
+/* ========== 表头 ========== */
+.wm-table__thead {
+  background-color: transparent;
+}
+
+.wm-table__th {
+  padding: var(--spacing-20) var(--spacing-20) var(--spacing-10) var(--spacing-20);
+  text-align: left;
+  font-size: var(--fontsize-14);
+  font-weight: 500;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-secondary);
+  transition: color 150ms;
+  position: relative;
+}
+
+.wm-table__th:first-child {
+  /* border-top-left-radius: var(--radius-4); */
+}
+
+.wm-table__th:last-child {
+  /* border-top-right-radius: var(--radius-4); */
+}
+
+.wm-table__th--sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Removed hover state for sortable headers */
+
+.wm-table__th-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wm-table__sorter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--text-quaternary);
+}
+
+.wm-table__sorter-up,
+.wm-table__sorter-down {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  transition: border-color 150ms;
+}
+
+.wm-table__sorter-up {
+  border-bottom: 4px solid currentColor;
+  margin-bottom: 2px;
+}
+
+.wm-table__sorter-down {
+  border-top: 4px solid currentColor;
+}
+
+.wm-table__sorter--active .wm-table__sorter-up,
+.wm-table__sorter--active .wm-table__sorter-down {
+  color: var(--primary-1-default);
+}
+
+/* ========== 表体 ========== */
+.wm-table__tbody {
+  background-color: var(--white);
+}
+
+.wm-table__tr {
+  transition: background-color 150ms;
+}
+
+.wm-table__tr:hover {
+  /* background-color: var(--primary-7-bg);  Moved to tbody specific selector */
+}
+
+.wm-table__tbody .wm-table__tr:hover {
+  background-color: var(--primary-7-bg);
+}
+
+.wm-table__tr--selected {
+  background-color: transparent;
+}
+
+/* 树形表格选中行第一个单元格文字使用主题色 */
+.wm-table__tr--selected .wm-table__td:first-child,
+.wm-table__tr--indeterminate .wm-table__td:first-child {
+  color: var(--primary-1-default);
+}
+
+.wm-table__td {
+  padding: var(--spacing-20);
+  text-align: left;
+  font-size: var(--fontsize-14);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--fill-secondary);
+  word-break: break-word;
+}
+
+.wm-table__tr:last-child .wm-table__td {
+  /* 确保最后一行也有边框 */
+}
+
+/* ========== 选中列 ========== */
+.wm-table__selection-col {
+  width: 48px;
+  text-align: center;
+}
+
+/* ========== 加载状态 ========== */
+.wm-table__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.wm-table__loading-spinner {
+  color: var(--primary-1-default);
+  animation: spin 1s linear infinite;
+}
+
+/* ========== 空状态 ========== */
+.wm-table__empty {
+  padding: var(--spacing-32);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--fontsize-14);
+}
+
+.wm-table__empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--spacing-16);
+  color: var(--text-quaternary);
+}
+
+/* ========== 分页 ========== */
+.wm-table__pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-20);
+  border-top: 1px solid var(--neutral-6);
+  background-color: var(--pagination-bg);
+  border-bottom-left-radius: var(--radius-12);
+  border-bottom-right-radius: var(--radius-12);
+}
+
+.wm-table__pagination .wm-pagination {
+  width: auto;
+}
+
+.wm-table__pagination-total {
+  font-size: var(--fontsize-14);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+/* ========== 尺寸变体 ========== */
+.wm-table--sm .wm-table__th,
+.wm-table--sm .wm-table__td {
+  padding: var(--spacing-8) var(--spacing-12);
+  font-size: var(--fontsize-14);
+}
+
+.wm-table--lg .wm-table__th,
+.wm-table--lg .wm-table__td {
+  padding: var(--spacing-16) var(--spacing-24);
+  font-size: var(--fontsize-14);
+}
+
+/* ========== 斑马纹 ========== */
+.wm-table--striped .wm-table__tr:nth-child(even) {
+  background-color: var(--fill-quaternary);
+}
+
+.wm-table--striped .wm-table__tbody .wm-table__tr:hover {
+  background-color: var(--primary-7-bg);
+}
+
+/* ========== 固定列 (Fixed Columns) ========== */
+.wm-table--fixed-columns {
+  table-layout: auto;
+}
+
+.wm-table__cell--fixed-left,
+.wm-table__cell--fixed-right {
+  position: sticky;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+/* 右固定列默认背景 */
+.wm-table__cell--fixed-right {
+  background-color: #ffffff;
+  padding-right: 16px;
+  white-space: nowrap;
+}
+
+.wm-table__thead .wm-table__cell--fixed-left,
+.wm-table__thead .wm-table__cell--fixed-right {
+  z-index: 3;
+  background-color: #ffffff;
+}
+
+/* 固定列行 hover 时背景继承 */
+.wm-table__tbody .wm-table__tr:hover .wm-table__cell--fixed-left,
+.wm-table__tbody .wm-table__tr:hover .wm-table__cell--fixed-right {
+  background-color: var(--primary-7-bg);
+}
+
+/* 左固定列最后一列阴影 */
+.wm-table__cell--fixed-left-last::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10px;
+  bottom: 0;
+  width: 10px;
+  pointer-events: none;
+  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* 右固定列第一列阴影 */
+.wm-table__cell--fixed-right-first::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  bottom: 0;
+  width: 10px;
+  pointer-events: none;
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 展开列 (Expandable) ========== */
+.wm-table__expand-col {
+  width: 48px;
+  text-align: center;
+  padding: 0 !important;
+}
+
+.wm-table__expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  border-radius: var(--radius-4);
+  transition: color 150ms, background-color 150ms;
+}
+
+.wm-table__expand-btn:hover {
+  color: var(--primary-1-default);
+  background-color: var(--primary-7-bg);
+}
+
+.wm-table__expand-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.wm-table__tr--expanded {
+  /* 展开行的父行样式 — 平台名显示为主色 */
+}
+
+.wm-table__tr--expanded .wm-table__td {
+  color: var(--primary-1-default);
+}
+
+.wm-table__tr--expand-row {
+  /* 展开内容行不需要 hover 效果 */
+}
+
+.wm-table__tr--expand-row:hover {
+  background-color: transparent !important;
+}
+
+.wm-table__td--expand-content {
+  padding: 0 !important;
+  background-color: transparent;
+  font-size: var(--fontsize-14);
+  font-weight: 400;
+}
+
+/* 嵌套子表格样式 (无标题) */
+.wm-table__td--expand-content .wm-table-container {
+  border-radius: 0;
+  background-color: var(--fill-quaternary);
+  border: none;
+  box-shadow: none;
+  padding: var(--spacing-8);
+}
+
+.wm-table__td--expand-content .wm-table__thead {
+  background-color: var(--fill-quaternary);
+}
+
+.wm-table__td--expand-content .wm-table__th {
+  background-color: var(--fill-quaternary);
+  border-bottom-color: var(--border-secondary);
+  font-size: var(--fontsize-14);
+  font-weight: 500;
+  padding: var(--spacing-16) var(--spacing-24) var(--spacing-8) var(--spacing-24);
+}
+
+.wm-table__td--expand-content .wm-table__th:first-child {
+  padding-left: var(--spacing-28);
+}
+
+.wm-table__td--expand-content .wm-table__td {
+  font-size: var(--fontsize-14);
+  font-weight: 400;
+  padding: var(--spacing-20);
+  border-bottom-color: var(--fill-secondary);
+}
+
+.wm-table__td--expand-content .wm-table__td:first-child {
+  padding-left: var(--spacing-28);
+}
+
+.wm-table__td--expand-content .wm-table__td:last-child {
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.wm-table__td--expand-content .wm-table__tbody {
+  background-color: var(--white);
+}
+
+.wm-table__td--expand-content .wm-table__pagination {
+  background-color: transparent;
+  border-top-color: var(--fill-secondary);
+}
+
+/* ========== 树形数据 (Tree Data) ========== */
+.wm-table__td--tree-cell {
+  padding-left: var(--spacing-16);
+}
+
+.wm-table__tree-indent-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.wm-table__tree-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  cursor: pointer;
+  color: var(--text-tertiary);
+  border-radius: var(--radius-3);
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+  outline: none;
+  padding: 0;
+}
+
+.wm-table__tree-expand-btn:hover {
+  background-color: var(--white);
+  border-color: var(--primary-5-border);
+  color: var(--primary-2-hover);
+}
+
+.wm-table__tree-expand-btn:active {
+  background-color: var(--white);
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+.wm-table__tree-expand-btn:focus-visible {
+  outline: 2px solid var(--primary-2-hover);
+  outline-offset: 2px;
+}
+
+/* 展开状态 —— 与默认态一致（secondary 风格，浅色） */
+.wm-table__tree-expand-btn--expanded {
+  border-color: var(--border-secondary);
+  background-color: var(--white);
+  color: var(--text-tertiary);
+}
+
+.wm-table__tree-expand-btn--expanded:hover {
+  background-color: var(--white);
+  border-color: var(--primary-5-border);
+  color: var(--primary-2-hover);
+}
+
+.wm-table__tree-expand-btn--expanded:active {
+  background-color: var(--white);
+  border-color: var(--primary-4-borderhover);
+  color: var(--primary-1-default);
+}
+
+/* 展开按钮图标 */
+.wm-table__tree-expand-icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.wm-table__tree-expand-placeholder {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.wm-table__tree-cell-content {
+  flex: 1;
+  min-width: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

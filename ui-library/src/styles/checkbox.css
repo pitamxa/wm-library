@@ -1,0 +1,330 @@
+/**
+ * Checkbox Component Styles
+ * 使用 BEM 命名规范和 Design Tokens
+ *
+ * 尺寸规范（与 Radio 保持一致）：
+ *   sm:      box 14px, icon 10px, font 14px/22px
+ *   default: box 16px, icon 12px, font 14px/22px
+ *   lg:      box 20px, icon 16px, font 16px/24px
+ */
+
+/* ========== CheckboxGroup 容器 ========== */
+.wm-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+/* ========== 标签 ========== */
+.wm-checkbox-group__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+}
+
+.wm-checkbox-group__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== Checkbox Items 容器 ========== */
+.wm-checkbox-group__items {
+  display: flex;
+  gap: var(--spacing-12);
+}
+
+.wm-checkbox-group__items--vertical {
+  flex-direction: column;
+}
+
+.wm-checkbox-group__items--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* ========== Checkbox Item ========== */
+.wm-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  cursor: pointer;
+}
+
+.wm-checkbox-item--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+/* ========== Checkbox Box ========== */
+.wm-checkbox-item__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: var(--radius-3);
+  transition: all 150ms;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Box 尺寸 — 与 Radio 一致 */
+.wm-checkbox-item__box--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+}
+
+.wm-checkbox-item__box--default {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.wm-checkbox-item__box--lg {
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+}
+
+/* ========== Box 状态 ========== */
+.wm-checkbox-item__box:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--primary-4-borderhover);
+  background-color: var(--fill-quaternary);
+}
+
+.wm-checkbox-item__box:focus-visible {
+  outline: 2px solid var(--primary-1-default);
+  outline-offset: 2px;
+}
+
+.wm-checkbox-item__box--checked {
+  border-color: var(--primary-1-default);
+  background-color: var(--primary-1-default);
+}
+
+.wm-checkbox-item__box--checked:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--primary-2-hover);
+  background-color: var(--primary-2-hover);
+}
+
+.wm-checkbox-item__box--indeterminate {
+  border-color: var(--primary-1-default);
+  background-color: var(--primary-1-default);
+}
+
+.wm-checkbox-item__box--indeterminate:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--primary-2-hover);
+  background-color: var(--primary-2-hover);
+}
+
+.wm-checkbox-item__box--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+/* 禁用 + 勾选：灰底 + 灰边框 + 禁用色图标（可见的勾选标记） */
+.wm-checkbox-item__box--checked.wm-checkbox-item__box--disabled {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+.wm-checkbox-item__box--checked.wm-checkbox-item__box--disabled .wm-checkbox-item__indicator {
+  color: var(--text-disabled);
+}
+
+/* 禁用 + 半选：灰底 + 灰边框 + 禁用色图标（与全选禁用同样灰色处理，通过 minus 图标区分） */
+.wm-checkbox-item__box--indeterminate.wm-checkbox-item__box--disabled {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+.wm-checkbox-item__box--indeterminate.wm-checkbox-item__box--disabled .wm-checkbox-item__indicator {
+  color: var(--text-disabled);
+}
+
+/* ========== 禁用状态：取消所有悬浮效果 ========== */
+/* 未勾选 disabled hover */
+.wm-checkbox-item__box--disabled:hover {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  cursor: not-allowed;
+}
+
+/* 勾选 + disabled hover */
+.wm-checkbox-item__box--checked.wm-checkbox-item__box--disabled:hover {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+/* 半选 + disabled hover */
+.wm-checkbox-item__box--indeterminate.wm-checkbox-item__box--disabled:hover {
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+  cursor: not-allowed;
+}
+
+/* 整行 item disabled 取消 hover 光标 */
+.wm-checkbox-item--disabled:hover {
+  cursor: not-allowed;
+}
+
+/* label disabled 取消 hover 光标和颜色 */
+.wm-checkbox-item__label--disabled:hover {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.wm-checkbox-item__box--error {
+  border-color: var(--error-1);
+}
+
+.wm-checkbox-item__box--error:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--error-2);
+}
+
+.wm-checkbox-item__box--error.wm-checkbox-item__box--checked {
+  border-color: var(--error-1);
+  background-color: var(--error-1);
+}
+
+.wm-checkbox-item__box--error.wm-checkbox-item__box--checked:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--error-2);
+  background-color: var(--error-2);
+}
+
+.wm-checkbox-item__box--success {
+  border-color: var(--success-1);
+}
+
+.wm-checkbox-item__box--success:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--success-2);
+}
+
+.wm-checkbox-item__box--success.wm-checkbox-item__box--checked {
+  border-color: var(--success-1);
+  background-color: var(--success-1);
+}
+
+.wm-checkbox-item__box--success.wm-checkbox-item__box--checked:hover:not(.wm-checkbox-item__box--disabled) {
+  border-color: var(--success-2);
+  background-color: var(--success-2);
+}
+
+/* ========== Checkbox Indicator ========== */
+.wm-checkbox-item__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+}
+
+/* ========== Checkbox Icon — 与 Box 尺寸成比例 ========== */
+.wm-checkbox-item__icon {
+  flex-shrink: 0;
+}
+
+.wm-checkbox-item__icon--sm {
+  width: var(--spacing-10);
+  height: var(--spacing-10);
+}
+
+.wm-checkbox-item__icon--default {
+  width: var(--spacing-12);
+  height: var(--spacing-12);
+}
+
+.wm-checkbox-item__icon--lg {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+/* ========== Checkbox Label ========== */
+.wm-checkbox-item__label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: color 150ms;
+  user-select: none;
+}
+
+/* Label 尺寸 — 与 Radio 保持一致 */
+.wm-checkbox-item__label--sm {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-checkbox-item__label--default {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-checkbox-item__label--lg {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+/* Label 状态 */
+.wm-checkbox-item__label--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+/* ========== Checkbox Content ========== */
+.wm-checkbox-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.wm-checkbox-item__description {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+}
+
+/* ========== 辅助文本 ========== */
+.wm-checkbox-group__helper {
+  margin: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+}
+
+.wm-checkbox-group__helper--error {
+  color: var(--error-1);
+}
+
+.wm-checkbox-group__helper--success {
+  color: var(--success-1);
+}
+
+.wm-checkbox-group__helper--default {
+  color: var(--text-tertiary);
+}
+
+/* ========== 无障碍支持 ========== */
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .wm-checkbox-item__box {
+    border-width: 2px;
+  }
+  
+  .wm-checkbox-item__box--checked {
+    border-width: 2px;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .wm-checkbox-item,
+  .wm-checkbox-item__box,
+  .wm-checkbox-item__label {
+    transition: none;
+  }
+}

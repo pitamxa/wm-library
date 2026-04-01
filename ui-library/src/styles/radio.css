@@ -1,0 +1,384 @@
+/**
+ * WM Radio Component Styles
+ * 使用 BEM 命名规范
+ *
+ * 尺寸规范（与 Checkbox 保持一致）：
+ *   sm:      button 14px, indicator 5px, font 14px/22px
+ *   default: button 16px, indicator 6px, font 14px/22px
+ *   lg:      button 20px, indicator 8px, font 16px/24px
+ */
+
+/* ========== 容器 ========== */
+.wm-radio-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+/* ========== 标签 ========== */
+.wm-radio-group__label {
+  display: block;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+}
+
+.wm-radio-group__label-required {
+  margin-left: var(--spacing-4);
+  color: var(--error-1);
+}
+
+/* ========== 选项列表容器 ========== */
+.wm-radio-group__items {
+  display: flex;
+  gap: var(--spacing-12);
+}
+
+.wm-radio-group__items--vertical {
+  flex-direction: column;
+}
+
+.wm-radio-group__items--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* ========== 单个选项 ========== */
+.wm-radio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  cursor: pointer;
+  position: relative;
+}
+
+.wm-radio-item--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+/* ========== Radio 按钮基础样式 ========== */
+.wm-radio-item__button {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  border: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color 200ms, background-color 200ms;
+}
+
+.wm-radio-item__button:hover:not(.wm-radio-item__button--disabled) {
+  border-color: var(--primary-4-borderhover);
+}
+
+.wm-radio-item__button:focus {
+  outline: none;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-offset-width: 2px;
+  --tw-ring-color: var(--primary-1-default);
+}
+
+/* ========== Radio 按钮尺寸 ========== */
+.wm-radio-item__button--sm {
+  width: var(--spacing-14);
+  height: var(--spacing-14);
+  margin-top: var(--spacing-4); /* (lineheight-22 - 14) / 2 = 4px，与 sm 标签首行居中 */
+}
+
+.wm-radio-item__button--default {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  margin-top: 3px; /* (lineheight-22 - 16) / 2 = 3px — no design token for 3px */
+}
+
+.wm-radio-item__button--lg {
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+  margin-top: var(--spacing-2); /* (lineheight-24 - 20) / 2 = 2px，与 lg 标签首行居中 */
+}
+
+/* ========== Radio 按钮状态 ========== */
+.wm-radio-item__button--checked {
+  border-color: var(--primary-1-default);
+  background-color: var(--white);
+}
+
+.wm-radio-item__button--checked:hover {
+  border-color: var(--primary-2-hover);
+}
+
+.wm-radio-item__button--disabled {
+  cursor: not-allowed;
+  background-color: var(--fill-tertiary);
+  border-color: var(--border-secondary);
+}
+
+.wm-radio-item__button--error {
+  border-color: var(--error-1);
+}
+
+.wm-radio-item__button--error:hover {
+  border-color: var(--error-2);
+}
+
+.wm-radio-item__button--error:focus {
+  --tw-ring-color: var(--error-1);
+}
+
+.wm-radio-item__button--success {
+  border-color: var(--success-1);
+}
+
+.wm-radio-item__button--success:hover {
+  border-color: var(--success-2);
+}
+
+.wm-radio-item__button--success:focus {
+  --tw-ring-color: var(--success-1);
+}
+
+/* ========== Radio 内部指示器 ========== */
+.wm-radio-item__indicator {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  border-radius: 50%;
+  background-color: var(--primary-1-default);
+  transform: scale(0);
+  transition: transform 150ms;
+}
+
+.wm-radio-item__indicator--sm {
+  width: 5px;  /* no design token for 5px */
+  height: 5px; /* no design token for 5px */
+}
+
+.wm-radio-item__indicator--default {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+}
+
+.wm-radio-item__indicator--lg {
+  width: var(--spacing-8);
+  height: var(--spacing-8);
+}
+
+.wm-radio-item__button--checked .wm-radio-item__indicator {
+  transform: scale(1);
+}
+
+.wm-radio-item__button--disabled .wm-radio-item__indicator {
+  background-color: var(--text-quaternary);
+}
+
+.wm-radio-item__button--error .wm-radio-item__indicator {
+  background-color: var(--error-1);
+}
+
+.wm-radio-item__button--success .wm-radio-item__indicator {
+  background-color: var(--success-1);
+}
+
+/* ========== Radio 标签 — 与 Checkbox 保持一致 ========== */
+.wm-radio-item__label {
+  color: var(--text-main);
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wm-radio-item__label--sm {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-radio-item__label--default {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-radio-item__label--lg {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-radio-item__label--disabled {
+  cursor: not-allowed;
+  color: var(--text-tertiary);
+}
+
+.wm-radio-item__description {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  margin-top: var(--spacing-2);
+  color: var(--text-tertiary);
+  text-align: left;
+}
+
+.wm-radio-item__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ========== 辅助文本 ========== */
+.wm-radio-group__helper {
+  margin: 0;
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  color: var(--text-tertiary);
+}
+
+.wm-radio-group__helper--default {
+  color: var(--text-tertiary);
+}
+
+.wm-radio-group__helper--error {
+  color: var(--error-1);
+}
+
+.wm-radio-group__helper--success {
+  color: var(--success-1);
+}
+
+/* ========== 卡片样式的 Radio ========== */
+.wm-radio-item--card {
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-12);
+  background-color: var(--white);
+  transition: border-color 200ms, background-color 200ms;
+}
+
+.wm-radio-item--card:hover:not(.wm-radio-item--disabled) {
+  border-color: var(--primary-4-borderhover);
+  background-color: var(--white);
+}
+
+.wm-radio-item--card.wm-radio-item--checked {
+  border-color: var(--primary-1-default);
+  background-color: var(--white);
+}
+
+.wm-radio-item--card.wm-radio-item--error {
+  border-color: var(--error-1);
+}
+
+.wm-radio-item--card.wm-radio-item--success {
+  border-color: var(--success-1);
+}
+
+/* ========== 按钮样式的 Radio ========== */
+.wm-radio-item--button {
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-8) var(--spacing-16);
+  background-color: var(--white);
+  transition: border-color 200ms, background-color 200ms, color 200ms;
+  justify-content: center;
+  align-items: center;
+}
+
+.wm-radio-item--button .wm-radio-item__button {
+  display: none;
+  margin-top: 0;
+}
+
+.wm-radio-item--button:hover:not(.wm-radio-item--disabled) {
+  border-color: var(--primary-4-borderhover);
+  background-color: var(--fill-quaternary);
+}
+
+.wm-radio-item--button.wm-radio-item--checked {
+  border-color: var(--primary-1-default);
+  background-color: var(--primary-1-default);
+  color: var(--white);
+}
+
+.wm-radio-item--button.wm-radio-item--checked:hover:not(.wm-radio-item--disabled) {
+  background-color: var(--primary-2-hover);
+  border-color: var(--primary-2-hover);
+}
+
+.wm-radio-item--button.wm-radio-item--checked .wm-radio-item__label {
+  color: var(--white);
+}
+
+.wm-radio-item--button.wm-radio-item--error {
+  border-color: var(--error-1);
+}
+
+.wm-radio-item--button.wm-radio-item--success {
+  border-color: var(--success-1);
+}
+
+/* ========== 尺寸 - 按钮样式 ========== */
+.wm-radio-item--button.wm-radio-item--sm {
+  padding: var(--spacing-6) var(--spacing-12);
+  font-size: var(--fontsize-14);
+}
+
+.wm-radio-item--button.wm-radio-item--default {
+  padding: var(--spacing-8) var(--spacing-16);
+  font-size: var(--fontsize-14);
+}
+
+/* ========== 实心按钮样式 (Solid) ========== */
+.wm-radio-group__items--solid {
+  background-color: var(--fill-secondary);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-4);
+  display: flex;
+  gap: var(--spacing-4);
+  width: fit-content;
+  flex-wrap: nowrap;
+}
+
+.wm-radio-item--solid {
+  border-radius: var(--radius-4);
+  padding: var(--spacing-4) var(--spacing-16);
+  transition: background-color 200ms, box-shadow 200ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+}
+
+.wm-radio-item--solid .wm-radio-item__label {
+  color: var(--text-tertiary);
+  font-size: var(--fontsize-14);
+  font-weight: normal;
+}
+
+.wm-radio-item--solid.wm-radio-item--checked {
+  background-color: var(--white);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wm-radio-item--solid.wm-radio-item--checked .wm-radio-item__label {
+  color: var(--text-main);
+}
+
+.wm-radio-item--solid .wm-radio-item__button {
+  display: none;
+}
+
+.wm-radio-item--solid.wm-radio-item--disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+  background-color: var(--fill-secondary);
+}
+
+/* 错误状态 */
+.wm-radio-item--solid.wm-radio-item--error {
+  border: 1px solid var(--error-1);
+}

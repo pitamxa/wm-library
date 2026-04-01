@@ -1,0 +1,430 @@
+/**
+ * WM Timeline Component Styles
+ * 时间轴组件样式 - 使用 BEM 命名规范
+ */
+
+/* ========== 容器 ========== */
+.wm-timeline {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-base);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ========== 条目 ========== */
+.wm-timeline__item {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  min-height: 56px;
+}
+
+.wm-timeline__item:last-child {
+  min-height: 0;
+}
+
+/* ========== 轴区域（dot + line） ========== */
+.wm-timeline__axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ========== 连接线 ========== */
+.wm-timeline__line {
+  flex: 1;
+  width: 1px;
+  background-color: var(--border-secondary);
+  min-height: var(--spacing-24);
+  margin-top: 2px;
+}
+
+.wm-timeline__line--dashed {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-secondary) 0px,
+    var(--border-secondary) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* ========== 圆点 ========== */
+.wm-timeline__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 圆点与时间文字（line-height: 20px）垂直居中对齐
+   offset = (line-height - dot-height) / 2 = (20-12)/2 = 4px，所有尺寸统一 */
+.wm-timeline--sm .wm-timeline__dot {
+  margin-top: 4px;
+}
+.wm-timeline--default .wm-timeline__dot {
+  margin-top: 4px;
+}
+.wm-timeline--lg .wm-timeline__dot {
+  margin-top: 4px;
+}
+
+.wm-timeline__dot-circle {
+  display: inline-block;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--border-secondary);
+  box-sizing: border-box;
+  transition: background-color 200ms;
+}
+
+/* status colors */
+.wm-timeline__dot-circle--default {
+  background-color: var(--border-secondary);
+}
+
+.wm-timeline__dot-circle--success {
+  background-color: var(--success-1);
+}
+
+.wm-timeline__dot-circle--error {
+  background-color: var(--error-1);
+}
+
+.wm-timeline__dot-circle--warning {
+  background-color: var(--warning-2);
+}
+
+.wm-timeline__dot-circle--info {
+  background-color: var(--primary-1-default);
+}
+
+.wm-timeline__dot-circle--pending {
+  background-color: var(--border-secondary);
+}
+
+/* 自定义图标 dot */
+.wm-timeline__dot-custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  border-radius: 50%;
+  color: var(--primary-1-default);
+}
+
+/* pending loading icon */
+.wm-timeline__dot-loading {
+  color: var(--text-tertiary);
+  animation: wm-timeline-spin 1s linear infinite;
+  background-color: var(--white);
+}
+
+@keyframes wm-timeline-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== 内容区域 ========== */
+.wm-timeline__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-timeline__time {
+  display: block;
+  color: var(--text-tertiary);
+  font-family: var(--font-family-base);
+  line-height: var(--lineheight-20);
+  font-size: var(--fontsize-12);
+  margin-bottom: var(--spacing-4);
+}
+
+.wm-timeline__title {
+  color: var(--text-main);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+.wm-timeline__description {
+  color: var(--text-tertiary);
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  margin-top: var(--spacing-4);
+}
+
+/* ================================================================
+ * Size variants
+ * ================================================================ */
+
+/* sm */
+.wm-timeline--sm .wm-timeline__dot-circle {
+  width: 12px;
+  height: 12px;
+}
+
+.wm-timeline--sm .wm-timeline__dot-custom,
+.wm-timeline--sm .wm-timeline__dot-loading {
+  width: 8px;
+  height: 8px;
+  font-size: var(--fontsize-12);
+}
+
+.wm-timeline--sm .wm-timeline__axis {
+  width: 8px;
+  margin-right: var(--spacing-8);
+  margin-left: var(--spacing-4);
+}
+
+.wm-timeline--sm .wm-timeline__item {
+  min-height: 44px;
+}
+
+.wm-timeline--sm .wm-timeline__title {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-timeline--sm .wm-timeline__description {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+/* default */
+.wm-timeline--default .wm-timeline__dot-circle {
+  width: 12px;
+  height: 12px;
+}
+
+.wm-timeline--default .wm-timeline__dot-custom,
+.wm-timeline--default .wm-timeline__dot-loading {
+  width: 16px;
+  height: 16px;
+  font-size: var(--fontsize-14);
+}
+
+.wm-timeline--default .wm-timeline__axis {
+  width: 16px;
+  margin-right: var(--spacing-12);
+  margin-left: var(--spacing-4);
+}
+
+.wm-timeline--default .wm-timeline__item {
+  min-height: 56px;
+}
+
+/* lg */
+.wm-timeline--lg .wm-timeline__dot-circle {
+  width: 12px;
+  height: 12px;
+}
+
+.wm-timeline--lg .wm-timeline__dot-custom,
+.wm-timeline--lg .wm-timeline__dot-loading {
+  width: 20px;
+  height: 20px;
+  font-size: var(--fontsize-16);
+}
+
+.wm-timeline--lg .wm-timeline__axis {
+  width: 20px;
+  margin-right: var(--spacing-16);
+  margin-left: var(--spacing-4);
+}
+
+.wm-timeline--lg .wm-timeline__item {
+  min-height: 68px;
+}
+
+.wm-timeline--lg .wm-timeline__title {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+}
+
+.wm-timeline--lg .wm-timeline__description {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ================================================================
+ * Mode: right (default) — axis left, content right
+ * ================================================================ */
+.wm-timeline--right .wm-timeline__item {
+  flex-direction: row;
+}
+
+.wm-timeline--right .wm-timeline__content {
+  padding-top: 0;
+  padding-bottom: var(--spacing-20);
+}
+
+.wm-timeline--right
+  .wm-timeline__item:last-child
+  .wm-timeline__content {
+  padding-bottom: 0;
+}
+
+/* ================================================================
+ * Mode: left — axis right, content left
+ * ================================================================ */
+.wm-timeline--left .wm-timeline__item {
+  flex-direction: row-reverse;
+}
+
+.wm-timeline--left .wm-timeline__content {
+  text-align: right;
+  padding-top: 0;
+  padding-bottom: var(--spacing-20);
+}
+
+.wm-timeline--left
+  .wm-timeline__item:last-child
+  .wm-timeline__content {
+  padding-bottom: 0;
+}
+
+.wm-timeline--left.wm-timeline--sm .wm-timeline__axis {
+  margin-right: var(--spacing-4);
+  margin-left: var(--spacing-8);
+}
+
+.wm-timeline--left.wm-timeline--default .wm-timeline__axis {
+  margin-right: var(--spacing-4);
+  margin-left: var(--spacing-12);
+}
+
+.wm-timeline--left.wm-timeline--lg .wm-timeline__axis {
+  margin-right: var(--spacing-4);
+  margin-left: var(--spacing-16);
+}
+
+/* ================================================================
+ * Mode: alternate — axis center, content alternates
+ * ================================================================ */
+.wm-timeline--alternate .wm-timeline__item {
+  flex-direction: row;
+}
+
+.wm-timeline--alternate .wm-timeline__axis {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wm-timeline--alternate .wm-timeline__col {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: var(--spacing-20);
+}
+
+.wm-timeline--alternate
+  .wm-timeline__item:last-child
+  .wm-timeline__col {
+  padding-bottom: 0;
+}
+
+.wm-timeline--alternate .wm-timeline__col--left {
+  text-align: right;
+  padding-right: var(--spacing-12);
+}
+
+.wm-timeline--alternate .wm-timeline__col--right {
+  text-align: left;
+  padding-left: var(--spacing-12);
+}
+
+.wm-timeline--alternate.wm-timeline--sm .wm-timeline__axis {
+  width: 8px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wm-timeline--alternate.wm-timeline--sm
+  .wm-timeline__col--left {
+  padding-right: var(--spacing-8);
+}
+
+.wm-timeline--alternate.wm-timeline--sm
+  .wm-timeline__col--right {
+  padding-left: var(--spacing-8);
+}
+
+.wm-timeline--alternate.wm-timeline--lg .wm-timeline__axis {
+  width: 20px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wm-timeline--alternate.wm-timeline--lg
+  .wm-timeline__col--left {
+  padding-right: var(--spacing-16);
+}
+
+.wm-timeline--alternate.wm-timeline--lg
+  .wm-timeline__col--right {
+  padding-left: var(--spacing-16);
+}
+
+/* ================================================================
+ * Item status coloring (title color)
+ * ================================================================ */
+.wm-timeline__item--success .wm-timeline__title {
+  color: var(--success-1);
+}
+
+.wm-timeline__item--error .wm-timeline__title {
+  color: var(--error-1);
+}
+
+.wm-timeline__item--warning .wm-timeline__title {
+  color: var(--warning-1);
+}
+
+.wm-timeline__item--info .wm-timeline__title {
+  color: var(--primary-1-default);
+}
+
+.wm-timeline__item--pending .wm-timeline__title {
+  color: var(--text-tertiary);
+}
+
+/* ================================================================
+ * Modifier: plain-title — suppress status colors on title
+ * ================================================================ */
+.wm-timeline--plain-title
+  .wm-timeline__item--success
+  .wm-timeline__title,
+.wm-timeline--plain-title
+  .wm-timeline__item--error
+  .wm-timeline__title,
+.wm-timeline--plain-title
+  .wm-timeline__item--warning
+  .wm-timeline__title,
+.wm-timeline--plain-title
+  .wm-timeline__item--info
+  .wm-timeline__title,
+.wm-timeline--plain-title
+  .wm-timeline__item--pending
+  .wm-timeline__title {
+  color: var(--text-main);
+}
+
+/* ================================================================
+ * Reduced motion
+ * ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .wm-timeline__dot-loading {
+    animation: none;
+  }
+}

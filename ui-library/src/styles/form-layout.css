@@ -1,0 +1,128 @@
+/**
+ * Form Horizontal Layout Styles
+ * 水平布局变体：label 在左侧右对齐，控件在右侧，垂直居中对齐
+ * 适用于 Input、Selector、DatePicker、Textarea、Checkbox、Radio
+ *
+ * 使用 .base.modifier 双类选择器确保优先级高于基础 .base { flex-direction: column }
+ */
+
+/* ========== 通用水平布局 label 样式 ========== */
+.wm-form-label--horizontal {
+  flex-shrink: 0;
+  text-align: right;
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+  color: var(--text-1);
+  font-family: var(--font-family-base);
+  white-space: nowrap;
+}
+
+.wm-form-label--horizontal .wm-form-label__required {
+  color: var(--error-1);
+  margin-right: 4px;
+}
+
+/* 水平布局的 body 区域（包含控件 + helperText） */
+.wm-form-body--horizontal {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ========== Input 水平布局 ========== */
+.wm-input.wm-input--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-input.wm-input--horizontal > .wm-form-label--horizontal {
+  /* 默认对齐到 sm(32px) 输入框中心 = (32 - 22) / 2 = 5px */
+  padding-top: 5px;
+}
+
+.wm-input.wm-input--horizontal.wm-input--default > .wm-form-label--horizontal {
+  /* 对齐到 default(40px) 输入框中心 = (40 - 22) / 2 = 9px */
+  padding-top: 9px;
+}
+
+.wm-input.wm-input--horizontal.wm-input--lg > .wm-form-label--horizontal {
+  /* 对齐到 lg(48px) 输入框中心 = (48 - 22) / 2 = 13px */
+  padding-top: 13px;
+}
+
+/* ========== Selector 水平布局 ========== */
+.wm-selector.wm-selector--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-selector.wm-selector--horizontal > .wm-form-label--horizontal {
+  padding-top: 5px;
+}
+
+.wm-selector.wm-selector--horizontal.wm-selector--default > .wm-form-label--horizontal {
+  padding-top: 9px;
+}
+
+.wm-selector.wm-selector--horizontal.wm-selector--lg > .wm-form-label--horizontal {
+  padding-top: 13px;
+}
+
+/* ========== DatePicker 水平布局 ========== */
+.wm-datepicker.wm-datepicker--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-datepicker.wm-datepicker--horizontal > .wm-form-label--horizontal {
+  padding-top: 5px;
+}
+
+.wm-datepicker.wm-datepicker--horizontal.wm-datepicker--default > .wm-form-label--horizontal {
+  padding-top: 9px;
+}
+
+.wm-datepicker.wm-datepicker--horizontal.wm-datepicker--lg > .wm-form-label--horizontal {
+  padding-top: 13px;
+}
+
+/* ========== Textarea 水平布局 ========== */
+.wm-textarea.wm-textarea--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-textarea.wm-textarea--horizontal > .wm-form-label--horizontal {
+  /* Textarea 的 label 对齐到第一行文字 */
+  padding-top: 5px;
+}
+
+/* ========== Checkbox 水平布局 ========== */
+.wm-checkbox-group.wm-checkbox-group--horizontal-layout {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-checkbox-group.wm-checkbox-group--horizontal-layout > .wm-form-label--horizontal {
+  /* Checkbox item 的 label 与左侧标签 line-height 相同(22px)，无需偏移 */
+  padding-top: 0;
+}
+
+/* ========== Radio 水平布局 ========== */
+.wm-radio-group.wm-radio-group--horizontal-layout {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wm-radio-group.wm-radio-group--horizontal-layout > .wm-form-label--horizontal {
+  /* Radio item 的 label 与左侧标签 line-height 相同(22px)，无需偏移 */
+  padding-top: 0;
+}

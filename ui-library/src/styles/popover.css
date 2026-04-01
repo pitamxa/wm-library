@@ -1,0 +1,173 @@
+/**
+ * Popover Component Styles
+ * 气泡卡片组件 — BEM 命名规范 + Design Tokens
+ */
+
+/* ========== Popover Wrapper ========== */
+.wm-popover-wrapper {
+  display: inline-block;
+}
+
+/* ========== Popover Base ========== */
+.wm-popover {
+  position: absolute;
+  max-width: 360px;
+  min-width: 180px;
+  background-color: var(--white);
+  color: var(--text-main);
+  border-radius: var(--radius-popover);
+  box-shadow: 0 4px 16px var(--shadow-main), 0 1px 4px var(--shadow-secondary);
+  word-wrap: break-word;
+  word-break: break-word;
+  animation: wm-popover-fade-in 150ms ease-out;
+  z-index: 1000;
+  font-family: var(--font-family-base);
+}
+
+/* ========== Popover Inner ========== */
+.wm-popover__inner {
+  padding: var(--spacing-16) var(--spacing-20);
+}
+
+/* ========== Popover Title ========== */
+.wm-popover__title {
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  font-weight: 600;
+  line-height: var(--lineheight-22);
+  color: var(--text-main);
+  margin: 0;
+  padding-bottom: var(--spacing-8);
+}
+
+/* ========== Popover Content ========== */
+.wm-popover__content {
+  font-family: var(--font-family-base);
+  font-size: var(--fontsize-14);
+  font-weight: 400;
+  line-height: var(--lineheight-22);
+  color: var(--text-secondary);
+}
+
+/* ========== Size Variants ========== */
+.wm-popover--sm .wm-popover__inner {
+  padding: var(--spacing-8) var(--spacing-12);
+}
+
+.wm-popover--sm .wm-popover__title {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+  padding-bottom: var(--spacing-4);
+}
+
+.wm-popover--sm .wm-popover__content {
+  font-size: var(--fontsize-12);
+  line-height: var(--lineheight-20);
+}
+
+.wm-popover--lg .wm-popover__inner {
+  padding: var(--spacing-20) var(--spacing-24);
+}
+
+.wm-popover--lg .wm-popover__title {
+  font-size: var(--fontsize-16);
+  line-height: var(--lineheight-24);
+  padding-bottom: var(--spacing-12);
+}
+
+.wm-popover--lg .wm-popover__content {
+  font-size: var(--fontsize-14);
+  line-height: var(--lineheight-22);
+}
+
+/* ========== Arrow ========== */
+.wm-popover__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Arrow sizes */
+.wm-popover--sm .wm-popover__arrow {
+  border-width: 5px;
+}
+
+.wm-popover .wm-popover__arrow {
+  border-width: 6px;
+}
+
+.wm-popover--lg .wm-popover__arrow {
+  border-width: 7px;
+}
+
+/* ========== Placements ========== */
+/* Top */
+.wm-popover--top .wm-popover__arrow {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  border-color: var(--white) transparent transparent transparent;
+}
+
+/* Bottom */
+.wm-popover--bottom .wm-popover__arrow {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border-color: transparent transparent var(--white) transparent;
+}
+
+/* Left */
+.wm-popover--left .wm-popover__arrow {
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  border-color: transparent transparent transparent var(--white);
+}
+
+/* Right */
+.wm-popover--right .wm-popover__arrow {
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  border-color: transparent var(--white) transparent transparent;
+}
+
+/* ========== Animations ========== */
+@keyframes wm-popover-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========== Accessibility ========== */
+@media (prefers-reduced-motion: reduce) {
+  .wm-popover {
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .wm-popover {
+    border: 2px solid var(--border-main);
+  }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .wm-popover {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-popover {
+    max-width: 220px;
+  }
+}

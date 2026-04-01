@@ -1,0 +1,125 @@
+/**
+ * Base Design Tokens (v1.1.0)
+ * 基础设计令牌：原始色板与数值（来自 Guidelines.md v1.1.0 color + number 集合）
+ * 此文件只定义原子级变量（color 集合 + number 集合），不包含语义映射。
+ * Brand 色属于 tokens 集合，定义在 theme.css 中。
+ */
+
+:root {
+  /* ========== Color - Blue (color 集合) ========== */
+  --blue-100: #1C2755;
+  --blue-200: #203175;
+  --blue-300: #263EA0;
+  --blue-400: #2B4ACB;
+  --blue-500: #5273E0;
+  --blue-600: #7F9EF3;
+  --blue-700: #A8C1F8;
+  --blue-800: #D2E0FA;
+
+  /* ========== Color - Purple ========== */
+  --purple-100: #6E11B0;
+  --purple-200: #8200DB;
+  --purple-300: #7F22FE;
+  --purple-400: #8E51FF;
+  --purple-500: #A684FF;
+  --purple-600: #C4B4FF;
+  --purple-700: #DDD6FF;
+  --purple-800: #F3E8FF;
+  --purple-900: #FAF5FF;
+
+  /* ========== Color - Green ========== */
+  --green-100: #009A29;
+  --green-200: #00B42A;
+  --green-300: #23C343;
+  --green-400: #4CD263;
+  --green-500: #7BE188;
+  --green-600: #AFF0B5;
+  --green-700: #E8FFEA;
+  --green-800: #F0FDF4;
+
+  /* ========== Color - Red ========== */
+  --red-100: #CB2634;
+  --red-200: #F53F3F;
+  --red-300: #F76560;
+  --red-400: #F98981;
+  --red-500: #FBACA3;
+  --red-600: #FDCDC5;
+  --red-700: #FFECE8;
+  --red-800: #FFF1F2;
+
+  /* ========== Color - Orange ========== */
+  --orange-100: #D25F00;
+  --orange-200: #FF7D00;
+  --orange-300: #FF9A2E;
+  --orange-400: #FFB65D;
+  --orange-500: #FFCF8B;
+  --orange-600: #FFE4BA;
+  --orange-700: #FFF7E8;
+  --orange-800: #FFF7ED;
+
+  /* ========== Color - Alpha ========== */
+  --alpha-100: #11111199;
+  --alpha-200: #11111129;
+  --alpha-300: #11111114;
+
+  /* ========== Color - Neutral ========== */
+  --neutral-100: #111111;
+  --neutral-200: #444444;
+  --neutral-300: #777777;
+  --neutral-400: #B9B9B9;
+  --neutral-500: #DDDDDD;
+  --neutral-600: #EEEEEE;
+  --neutral-700: #F2F3F4;
+  --neutral-800: #F5F5F5;
+  --neutral-900: #FAFAFA;
+
+  /* ========== Number - Font Size (px) ========== */
+  --fontsize-30: 30px;
+  --fontsize-24: 24px;
+  --fontsize-22: 22px;
+  --fontsize-20: 20px;
+  --fontsize-18: 18px;
+  --fontsize-16: 16px;
+  --fontsize-15: 15px;
+  --fontsize-14: 14px;
+  --fontsize-12: 12px;
+
+  /* ========== Number - Line Height (px) ========== */
+  --lineheight-38: 38px;
+  --lineheight-32: 32px;
+  --lineheight-30: 30px;
+  --lineheight-28: 28px;
+  --lineheight-26: 26px;
+  --lineheight-24: 24px;
+  --lineheight-23: 23px;
+  --lineheight-22: 22px;
+  --lineheight-20: 20px;
+
+  /* ========== Number - Radius (px) ========== */
+  --radius-2: 2px;
+  --radius-3: 3px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+
+  /* ========== Number - Spacing (px) ========== */
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+}

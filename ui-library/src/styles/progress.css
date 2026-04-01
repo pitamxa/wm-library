@@ -1,0 +1,61 @@
+.wm-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+.wm-progress__root {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--fill-secondary);
+  border-radius: 9999px;
+  flex: 1;
+  
+  /* Fix the height based on size, set via modifiers below */
+  /* Ensures compatibility with Radix UI's internal transform */
+  transform: translateZ(0);
+}
+
+.wm-progress__indicator {
+  background-color: var(--primary-1-default);
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+  border-radius: 9999px;
+}
+
+.wm-progress__text {
+  font-family: var(--font-family-base);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* Sizes */
+.wm-progress--sm .wm-progress__root {
+  height: 4px;
+}
+
+.wm-progress--md .wm-progress__root {
+  height: 8px;
+}
+
+.wm-progress--lg .wm-progress__root {
+  height: 12px;
+}
+
+/* Color Variants */
+/* Primary (default) */
+.wm-progress--primary .wm-progress__indicator {
+  background-color: var(--primary-1-default);
+}
+
+/* Success */
+.wm-progress--success .wm-progress__indicator {
+  background-color: var(--success-2);
+}
