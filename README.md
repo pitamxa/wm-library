@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WM UI Workspace
 
 当前目录已拆分为两个独立项目：
@@ -11,3 +12,7 @@
 cd ui-library && npm run build
 cd ui-demo && npm run dev
 ```
+=======
+# wm-library
+wm-library
+>>>>>>> 6b8b78f5a2433d933af1fe94861ed676b6285f48
