@@ -21,6 +21,7 @@ import { PimaButton } from './PimaButton';
 import { PimaRadio } from './PimaRadio';
 import { PimaTag } from './PimaTag';
 import { motion } from "motion/react";
+import "@wm/ui-library/style.css";
 
 // --- Chart Wrapper to avoid width/height 0 errors ---
 const ChartContainer = ({ children, height = 350 }: { children: React.ReactNode; height?: number }) => {

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import "../styles/tooltip.css";
 
 export interface PimaTooltipProps {
   /** Tooltip content */

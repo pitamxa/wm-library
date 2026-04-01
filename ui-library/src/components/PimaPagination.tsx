@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PimaSelector } from "./PimaSelector";
 import type { PimaSelectorOption } from "./PimaSelector";
+import "../styles/pagination.css";
 
 export interface PimaPaginationProps {
   /** Current page number, starting from 1 */

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Progress from '@radix-ui/react-progress';
+import "../styles/progress.css";
 
 export interface PimaProgressProps {
   /**

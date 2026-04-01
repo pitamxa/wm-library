@@ -1,5 +1,6 @@
 import React from "react";
 import { X } from "lucide-react";
+import "../styles/tag.css";
 
 export interface PimaTagProps {
   /** 标签文本内容 */
